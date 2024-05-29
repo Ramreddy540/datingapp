@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context=".ProfileActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profileimage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="130dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/tp" />
+
+        <ImageView
+            android:id="@+id/vector"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="170dp"
+            android:src="@drawable/baseline_mode_edit_24" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Satya Honey"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="5dp"
+            tools:layout_editor_absoluteY="290dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:drawableLeft="@drawable/verifyy"
+            android:drawableRight="@drawable/baseline_navigate_next_24"
+            android:gravity="center"
+            android:text="Get Verified"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="37dp"
+            tools:layout_editor_absoluteY="297dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:drawableLeft="@drawable/edit"
+            android:drawableRight="@drawable/baseline_navigate_next_24"
+            android:gravity="center"
+            android:text="Edit Profile"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="31dp"
+            tools:layout_editor_absoluteY="254dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:drawableLeft="@drawable/like"
+            android:drawableRight="@drawable/baseline_navigate_next_24"
+            android:gravity="center"
+            android:text="Your Likes"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="31dp"
+            tools:layout_editor_absoluteY="254dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:drawableLeft="@drawable/instagramm"
+            android:drawableRight="@drawable/baseline_navigate_next_24"
+            android:gravity="center"
+            android:text="Instagram"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="31dp"
+            tools:layout_editor_absoluteY="254dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:drawableLeft="@drawable/help"
+            android:drawableRight="@drawable/baseline_navigate_next_24"
+            android:gravity="center"
+            android:text="Help Center"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="31dp"
+            tools:layout_editor_absoluteY="254dp" />
+
+    </LinearLayout>
+    
+</androidx.constraintlayout.widget.ConstraintLayout>

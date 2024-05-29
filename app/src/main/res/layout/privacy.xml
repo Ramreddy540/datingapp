@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="fill_horizontal">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="fill_vertical"
+        tools:ignore="missingconstraints">
+
+        <ImageView
+            android:id="@+id/aro1"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/baseline_arrow_back_ios_24"
+            tools:ignore="missingconstraints"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="65dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Privacy policy"
+            android:textColor="@color/black"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="111dp"
+            tools:layout_editor_absoluteY="101dp"
+            tools:ignore="missingconstraints"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Last update 25/06/23"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="normal"
+            tools:layout_editor_absoluteX="40dp"
+            tools:layout_editor_absoluteY="163dp"
+            tools:ignore="missingconstraints"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Please read these privacy policy,carefully before using our app operated by us"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="normal"
+            tools:layout_editor_absoluteX="30dp"
+            tools:layout_editor_absoluteY="201dp"
+            tools:ignore="missingconstraints"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Privacy policy"
+            android:textColor="@color/grey"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="40dp"
+            tools:layout_editor_absoluteY="272dp"
+            tools:ignore="missingconstraints"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="There are many variations of passages
+         of Lorem Ipsum available, but the majority have suffered alteration
+          in some form, by injected humour, or randomised words which don't look
+          even slightly believable. If you are going to use a passage of Lorem
+           Ipsum , you need to be sure there isn't anything embarrassing hidden in
+           the middle of text.
+                                                                          All the
+           Lorem Ipsum generators on the internet tend to repeat
+           predefined chunks as necessary, making this the first true generator on
+            the internet. It uses a dictionary of over 200 Latin words combined with a
+             handful of model sentence structures to generate Lorem Ipsum which looks
+             reasonable.                                                                   "
+            android:textColor="@color/black"
+            android:textSize="24dp"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="331dp"
+            tools:ignore="missingconstraints"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

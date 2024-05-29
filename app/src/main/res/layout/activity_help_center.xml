@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:layout_gravity="center"
+    tools:context=".HelpCenter">
+
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/helpCenter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Help Center"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center|center_horizontal"
+            android:textColor="@color/black"
+            android:textSize="32dp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_arrow_back_ios_24"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout7"
+        tools:ignore="missingconstraints">
+
+        <LinearLayout
+            android:id="@+id/ll1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="30dp"
+                android:drawableRight="@drawable/baseline_navigate_next_24"
+                android:text="FAQ"
+                android:textColor="@color/black"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="41dp"
+                tools:layout_editor_absoluteY="201dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ll2"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                android:drawableRight="@drawable/baseline_navigate_next_24"
+                android:text="Support"
+                android:textColor="@color/black"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="41dp"
+                tools:layout_editor_absoluteY="201dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ll3"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                android:drawableRight="@drawable/baseline_navigate_next_24"
+                android:text="Safety Tips"
+                android:textColor="@color/black"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="41dp"
+                tools:layout_editor_absoluteY="201dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:id="@+id/ll4"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                android:drawableRight="@drawable/baseline_navigate_next_24"
+                android:text="Terms of use"
+                android:textColor="@color/black"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="41dp"
+                tools:layout_editor_absoluteY="201dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ll5"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                android:drawableRight="@drawable/baseline_navigate_next_24"
+                android:text="Privacy Policy"
+                android:textColor="@color/black"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="41dp"
+                tools:layout_editor_absoluteY="201dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:id="@+id/ll6"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="30dp"
+                android:drawableRight="@drawable/baseline_navigate_next_24"
+                android:text="Delete"
+                android:textColor="@color/black"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="41dp"
+                tools:layout_editor_absoluteY="201dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:id="@+id/ll7"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                android:drawableRight="@drawable/baseline_navigate_next_24"
+                android:text="Logout"
+                android:textColor="@color/black"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="41dp"
+                tools:layout_editor_absoluteY="201dp" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

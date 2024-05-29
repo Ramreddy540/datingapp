@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    android:orientation="horizontal">
+
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+
+       <ImageView
+           android:id="@+id/aro"
+           android:layout_width="46dp"
+           android:layout_height="0dp"
+           android:layout_marginStart="16dp"
+           android:layout_marginTop="24dp"
+           android:src="@drawable/baseline_arrow_back_ios_24"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent" />
+
+       <TextView
+           android:id="@+id/textView"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="56dp"
+           android:gravity="center"
+           android:text="Terms and Conditions"
+           android:textColor="@color/black"
+           android:textSize="30dp"
+           android:textStyle="bold"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintHorizontal_bias="0.0"
+           app:layout_constraintStart_toEndOf="@+id/aro"
+           app:layout_constraintTop_toTopOf="parent" />
+
+       <TextView
+           android:id="@+id/textView2"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="16dp"
+           android:text="Last Update:25/06/23"
+           android:textColor="@color/black"
+           android:textSize="18dp"
+           android:textStyle="bold"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintHorizontal_bias="0.826"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/textView"/>
+
+       <TextView
+           android:id="@+id/textView3"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="Please read these terms of service carefully before using our app operated by us."
+           android:textColor="@color/black"
+           android:textSize="24dp"
+           android:textStyle="normal"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+       <TextView
+           android:id="@+id/textView4"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Conditions of uses"
+           android:textSize="24dp"
+           android:textStyle="bold"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintHorizontal_bias="0.497"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/textView3"
+           tools:ignore="missingconstraints" />
+
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more or less normal distribution of letters, as opposed to using 'content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum will uncover many web sites still in their infancy various versions have evolved over the years sometimes by accident sometimes or purpose (injected humour and the like)."
+           android:textColor="@color/black"
+           android:textSize="24dp"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/textView4"
+           tools:ignore="missingconstraints" />
+
+   </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>
