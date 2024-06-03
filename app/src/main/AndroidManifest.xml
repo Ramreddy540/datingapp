@@ -75,11 +75,7 @@
             android:name=".MainActivity3"
             android:exported="false" />
         <activity
-<<<<<<< HEAD
             android:name=".YourLikeActivity"
-=======
-            android:name=".OTPSendActivity"
->>>>>>> 98493ba371eb076177d1d322bbaf71598da8f0d8
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
