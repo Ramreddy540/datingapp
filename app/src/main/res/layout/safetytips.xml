@@ -8,7 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="fill_vertical">
+        android:padding="16dp">
 
         <ImageView
             android:id="@+id/aro1"
@@ -19,14 +19,17 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/safety_tips_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="safety tips"
+            android:text="Safety Tips"
             android:textColor="@color/black"
             android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/aro1"
-            app:layout_constraintTop_toTopOf="@id/aro1" />
+            app:layout_constraintTop_toTopOf="@id/aro1"
+            app:layout_constraintBottom_toBottomOf="@id/aro1"
+            app:layout_constraintHorizontal_bias="0.0" />
 
         <!-- User Authentication -->
         <TextView
@@ -39,17 +42,18 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/aro1"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="16dp" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/userAuthDesc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:text="Implement a robust user authentication system to ensure that only legitimate users can access the app. Encourage users to use strong, unique passwords and enable two-factor authentication for added security."
             android:textColor="@color/black"
             android:textSize="20sp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="@id/userAuthLabel"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/userAuthLabel" />
 
         <!-- Profile Verification -->
@@ -63,17 +67,18 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/userAuthDesc"
-            android:layout_marginTop="32dp"/>
+            android:layout_marginTop="32dp" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/profileVerificationDesc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:text="Consider implementing a profile verification system to ensure the authenticity of user profiles. This could involve email verification, phone number verification, or other identity verification methods."
             android:textColor="@color/black"
             android:textSize="20sp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="@id/profileVerificationLabel"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/profileVerificationLabel" />
 
         <!-- Privacy Controls -->
@@ -87,17 +92,18 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/profileVerificationDesc"
-            android:layout_marginTop="32dp"/>
+            android:layout_marginTop="32dp" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/privacyControlsDesc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:text="Allow users to control the visibility of their profile information. Provide privacy settings that let users choose who can view their profile and contact them."
             android:textColor="@color/black"
             android:textSize="20sp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="@id/privacyControlsLabel"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/privacyControlsLabel" />
 
         <!-- Report and Block Features -->
@@ -111,17 +117,18 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/privacyControlsDesc"
-            android:layout_marginTop="32dp"/>
+            android:layout_marginTop="32dp" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/reportBlockDesc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:text="Include a feature that allows users to report suspicious behavior or inappropriate content. Implement a blocking mechanism that enables users to block and prevent communication with specific individuals."
             android:textColor="@color/black"
             android:textSize="20sp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="@id/reportBlockLabel"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/reportBlockLabel" />
 
         <!-- Secure Messaging -->
@@ -135,17 +142,18 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/reportBlockDesc"
-            android:layout_marginTop="32dp"/>
+            android:layout_marginTop="32dp" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/secureMessagingDesc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:text="Use encryption protocols to secure user messages and sensitive data. This ensures that communications within the app are protected from unauthorized access."
             android:textColor="@color/black"
             android:textSize="20sp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="@id/secureMessagingLabel"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/secureMessagingLabel" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
