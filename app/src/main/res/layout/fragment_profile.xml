@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/profilebg"
     tools:context=".ProfileFragment">
 
     <ScrollView
@@ -138,7 +137,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="30dp"
-                    android:drawableLeft="@drawable/instagramm"
+                    android:drawableLeft="@drawable/instagram"
                     android:drawableRight="@drawable/baseline_navigate_next_24"
                     android:gravity="center"
                     android:text="Instagram"
