@@ -60,7 +60,7 @@ public class OTPSendActivity extends AppCompatActivity {
                             public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                                 progressBar.setVisibility(View.GONE);
                                 buttonGetOTP.setVisibility(View.VISIBLE);
-                                Intent intent=new Intent(OTPSendActivity.this,OTPReciviedActivity.class);
+                                Intent intent=new Intent(OTPSendActivity.this, OTPReceivedActivity.class);
                                 intent.putExtra("moblie",inputMoblie.getText().toString());
                                 intent.putExtra("verficationId",verificationId);
                                 startActivity(intent);

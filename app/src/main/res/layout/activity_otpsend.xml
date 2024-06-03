@@ -15,11 +15,10 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="300dp"
+            android:layout_width="wrap_content"
             android:layout_height="500dp"
-            android:layout_marginTop="80dp"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/send" />
+            android:src="@drawable/otpsendbg" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -46,9 +45,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:gravity="center"
-            android:text="@string/enter_moblie_number"
+            android:text="@string/enter_mobile_number"
             android:textColor="@color/colorTextSecondary"
             android:textSize="14sp"/>
 

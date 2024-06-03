@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -25,7 +24,7 @@ import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
 
-public class OTPReciviedActivity extends AppCompatActivity {
+public class OTPReceivedActivity extends AppCompatActivity {
 
     private EditText intputcode1,intputcode2,intputcode3,intputcode4,intputcode5,intputcode6;
 
@@ -33,7 +32,7 @@ public class OTPReciviedActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_otprecivied);
+        setContentView(R.layout.activity_otpreceived);
        TextView textMobile=findViewById(R.id.textmoblie);
         textMobile.setText(String.format("+91-%s",getIntent().getStringExtra("moblie")));
         intputcode1=findViewById(R.id.inputcode1);
@@ -59,7 +58,7 @@ public class OTPReciviedActivity extends AppCompatActivity {
                         || intputcode4.getText().toString().trim().isEmpty()
                         || intputcode5.getText().toString().trim().isEmpty()
                         || intputcode6.getText().toString().trim().isEmpty()) {
-                    Toast.makeText(OTPReciviedActivity.this, "Please enter valid code", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(OTPReceivedActivity.this, "Please enter valid code", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 String code=
@@ -85,7 +84,7 @@ public class OTPReciviedActivity extends AppCompatActivity {
                                   intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                   startActivity(intent);
                               }else {
-                                  Toast.makeText(OTPReciviedActivity.this, "The verification code entered was invalid", Toast.LENGTH_SHORT).show();
+                                  Toast.makeText(OTPReceivedActivity.this, "The verification code entered was invalid", Toast.LENGTH_SHORT).show();
                               }
                            }
                        });
@@ -102,7 +101,7 @@ public class OTPReciviedActivity extends AppCompatActivity {
                     "+91" +getIntent().getStringExtra("moblie"),
                     60,
                     TimeUnit.SECONDS,
-                    OTPReciviedActivity.this,
+                    OTPReceivedActivity.this,
                     new PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
                         @Override
                         public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
@@ -110,12 +109,12 @@ public class OTPReciviedActivity extends AppCompatActivity {
                         }
                         @Override
                         public void onVerificationFailed(@NonNull FirebaseException e) {
-                            Toast.makeText(OTPReciviedActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(OTPReceivedActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                         @Override
                         public void onCodeSent(@NonNull String newVerificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                           verificatonID =newVerificationId;
-                            Toast.makeText(OTPReciviedActivity.this, "OTP Sent", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(OTPReceivedActivity.this, "OTP Sent", Toast.LENGTH_SHORT).show();
                         }
                     }
             );

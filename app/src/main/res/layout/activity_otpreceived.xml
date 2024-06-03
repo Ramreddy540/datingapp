@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="none"
-    tools:context=".OTPReciviedActivity">
+    tools:context=".OTPReceivedActivity">
 
 
     <LinearLayout
@@ -15,16 +15,16 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="300dp"
-            android:layout_height="400dp"
-            android:layout_marginTop="80dp"
+            android:layout_width="wrap_content"
+            android:layout_height="507dp"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/send" />
+            android:scaleType="fitCenter"
+            android:src="@drawable/otpreceivedbg" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:text="@string/otp_verification"
             android:textSize="20sp"
             android:textColor="@color/colorTextPrimary"
@@ -48,13 +48,13 @@
             android:layout_marginStart="50dp"
             android:layout_marginEnd="50dp"
             android:gravity="center"
-            android:textSize="14sp"
+            android:textSize="10sp"
             android:textColor="@color/colorTextPrimary"
             android:textStyle="bold"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:gravity="center"
             android:orientation="horizontal">
             <EditText
