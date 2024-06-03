@@ -30,7 +30,7 @@
             android:name=".ChatActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".YourLikeActivity"
             android:exported="false" />
         <activity
             android:name=".SampleActivity"
@@ -54,9 +54,6 @@
             android:name=".DeleteActivity"
             android:exported="false" />
         <activity
-            android:name=".ChatActivity"
-            android:exported="false" />
-        <activity
             android:name=".ProfileActivity"
             android:exported="false" />
         <activity
@@ -75,7 +72,7 @@
             android:name=".MainActivity3"
             android:exported="false" />
         <activity
-            android:name=".YourLikeActivity"
+            android:name=".MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
