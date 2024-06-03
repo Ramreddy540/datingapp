@@ -51,7 +51,7 @@
             android:name=".DeleteActivity"
             android:exported="false" />
         <activity
-            android:name=".OTPReciviedActivity"
+            android:name=".ChatActivity"
             android:exported="false" />
         <activity
             android:name=".ProfileActivity"
@@ -63,7 +63,7 @@
             android:name=".S1"
             android:exported="false" />
         <activity
-            android:name=".OTPSendActivity"
+            android:name=".OTPReceivedActivity"
             android:exported="false" />
         <activity
             android:name=".GetVerified"
@@ -72,7 +72,7 @@
             android:name=".LoveAnime"
             android:exported="false" />
         <activity
-            android:name=".ChatActivity"
+            android:name=".OTPSendActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
