@@ -43,4 +43,3 @@ public class YourLikeActivity extends AppCompatActivity {
         recyclerView.setAdapter(yourLikeAdapter);
     }
 }
-git
