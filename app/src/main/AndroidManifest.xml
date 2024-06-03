@@ -24,7 +24,10 @@
         android:theme="@style/Theme.OTPVerification"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity3"
+            android:name=".LoveAnime"
+            android:exported="false" />
+        <activity
+            android:name=".ChatActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -69,10 +72,10 @@
             android:name=".GetVerified"
             android:exported="false" />
         <activity
-            android:name=".LoveAnime"
+            android:name=".MainActivity3"
             android:exported="false" />
         <activity
-            android:name=".ChatActivity"
+            android:name=".YourLikeActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
