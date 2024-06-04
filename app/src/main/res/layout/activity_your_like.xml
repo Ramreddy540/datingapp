@@ -8,10 +8,11 @@
     tools:context=".YourLikeActivity">
 
         <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/your_like_recycler_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="8dp" />
+            android:id="@+id/your_like_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            tools:listitem="@layout/your_like_item"/>
 
 
 

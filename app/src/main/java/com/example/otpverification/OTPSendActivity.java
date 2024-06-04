@@ -26,7 +26,6 @@ public class OTPSendActivity extends AppCompatActivity {
 
         final EditText inputMoblie = findViewById(R.id.inputMobile);
         Button buttonGetOTP=findViewById(R.id.buttonGetOTP);
-
         final ProgressBar progressBar=findViewById(R.id.progressBar);
 
         buttonGetOTP.setOnClickListener(new View.OnClickListener() {

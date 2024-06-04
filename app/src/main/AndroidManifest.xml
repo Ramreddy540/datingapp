@@ -24,6 +24,9 @@
         android:theme="@style/Theme.OTPVerification"
         tools:targetApi="31">
         <activity
+            android:name=".InstagramActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity3"
             android:exported="false" />
         <activity
@@ -66,13 +69,16 @@
             android:name=".OTPReceivedActivity"
             android:exported="false" />
         <activity
+            android:name=".OTPSendActivity"
+            android:exported="false" />
+        <activity
             android:name=".GetVerified"
             android:exported="false" />
         <activity
-            android:name=".LoveAnime"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".LoveAnime"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>

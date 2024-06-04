@@ -61,18 +61,20 @@
 
     <Button
         android:id="@+id/getStartedButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/Perfect2"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="40dp"
-        android:background="@drawable/button_background"
+        android:background="@drawable/button_gradient"
         android:padding="5dp"
         android:text="@string/get_started"
         android:textSize="18sp"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Perfect1" /> <!-- Set the background to the selector -->
+        app:layout_constraintTop_toBottomOf="@+id/Perfect1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

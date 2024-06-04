@@ -173,7 +173,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/buttonverify"
                 android:layout_margin="30dp"
-                android:background="@drawable/background_button"
+                android:background="@drawable/background_orange"
                 android:text="@string/verify"
                 android:textColor="@color/colorWhite"
                 android:textStyle="bold"

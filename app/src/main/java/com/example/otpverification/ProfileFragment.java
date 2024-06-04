@@ -56,6 +56,25 @@ public class ProfileFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+
+
+        // Get the "S2" TextView
+        TextView EdTextView = rootView.findViewById(R.id.instagra);
+        // Set OnClickListener to navigate to S2Activity
+        EdTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the HelpCenterActivity
+                Intent intent = new Intent(getActivity(), InstagramActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+
+        TextView TextView = rootView.findViewById(R.id.editprofile);
         // Get the "Help Center" TextView
         TextView helpCenterTextView = rootView.findViewById(R.id.helpCenterTextView);
         // Set OnClickListener to navigate to HelpCenterActivity
@@ -70,6 +89,7 @@ public class ProfileFragment extends Fragment {
 
         return rootView;
     }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
