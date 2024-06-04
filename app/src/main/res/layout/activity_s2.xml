@@ -15,6 +15,26 @@
         android:paddingEnd="20dp"
         android:paddingTop="20dp">
 
+        <Button
+            android:id="@+id/skip_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Skip"
+            android:layout_gravity="end"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:id="@+id/About"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:text="Tell us more about yourself"
+            android:layout_marginTop="10dp"
+            android:textSize="24dp" />
+
         <TextView
             android:id="@+id/txt"
             android:layout_width="wrap_content"
@@ -130,17 +150,10 @@
             android:id="@+id/submit_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Move to Next Activity"
+            android:text="Next>"
             android:layout_gravity="center"
             android:layout_marginTop="20dp" />
 
-        <Button
-            android:id="@+id/skip_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Skip"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp" />
 
     </LinearLayout>
 </ScrollView>
