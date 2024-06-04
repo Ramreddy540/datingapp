@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">OTP Verification</string>
+    <string name="upload_image">Upload your image With Smile</string>
     <string name="otp_verification">OTP Verification</string>
     <string name="we_will_send_you_an_one_time_password_on_the_moblie_number">we will send you an One Time Password on the moblie number</string>
     <string name="enter_mobile_number">Enter Moblie Number</string>
@@ -34,9 +35,9 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="by_signing_up_you_agree_to_our_terms_see_how_we_use_your_data_in_our_privacy_policy">By signing up, you agree to our Terms. See how we use your data in our Privacy Policy.</string>
+    <string name="by_signing">By signing up, you agree to our Terms. See how we use your data in our Privacy Policy.</string>
     <string name="get_started">Get Started</string>
-    <string name="application_aimed_at_singles_looking_for_a_serious_relationship">Application aimed at singles looking for a serious Relationship</string>
+    <string name="application_aimed">Application aimed at singles looking for a serious Relationship</string>
     <string name="find_your_perfect_partner">Find your Perfect Partner</string>
     <string name="your_status">Your Status</string>
     <string name="your_drinking_habits">Your Drinking Habits</string>

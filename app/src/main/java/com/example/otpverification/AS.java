@@ -28,7 +28,7 @@ public class AS extends Activity {
     // Method to handle button click
     private void onGetStartedButtonClick() {
         // Show a toast message
-        Toast.makeText(this, "Get Started button clicked!", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Get Started button clicked!", Toast.LENGTH_SHORT).show();
 
         // Create an Intent to start the new activity
         Intent intent = new Intent(AS.this, OTPSendActivity.class);
