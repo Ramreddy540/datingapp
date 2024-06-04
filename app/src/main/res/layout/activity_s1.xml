@@ -15,6 +15,7 @@
         android:layout_marginBottom="16dp"
         android:layout_centerHorizontal="true"
         android:text="Tell us about yourself"
+        android:textColor="@color/black"
         android:textSize="24dp" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -43,12 +44,15 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/FirstName"
         android:layout_marginTop="16dp"
+        android:background="@drawable/background_button"
+        android:paddingStart="20dp"
         android:hint="Last Name">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/lastName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:backgroundTint="@android:color/transparent"
             android:inputType="textCapSentences"/>
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -59,12 +63,15 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/LastName"
         android:layout_marginTop="16dp"
+        android:background="@drawable/background_button"
+        android:paddingStart="20dp"
         android:hint="Email">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:backgroundTint="@android:color/transparent"
             android:inputType="textEmailAddress"/>
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -75,6 +82,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/EmailId"
         android:layout_marginTop="16dp"
+        android:background="@drawable/background_button"
         android:hint="Date of Birth">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -82,8 +90,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="none"
+            android:backgroundTint="@android:color/transparent"
             android:focusable="false"
             android:clickable="true"
+            android:paddingStart="20dp"
             android:drawableEnd="@drawable/baseline_calendar_month_24" />
     </com.google.android.material.textfield.TextInputLayout>
 
