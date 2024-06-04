@@ -33,7 +33,7 @@ public class OTPSendActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(inputMoblie.getText().toString().trim().isEmpty()) {
-                    Toast.makeText(OTPSendActivity.this, "Enter Mobile", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(OTPSendActivity.this, "Enter Mobile", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 progressBar.setVisibility(View.VISIBLE);
