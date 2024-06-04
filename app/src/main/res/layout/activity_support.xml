@@ -44,10 +44,11 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#DABFDF"
+            android:background="#FFFFFF"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:padding="2dp">
+            android:padding="2dp"
+            app:boxStrokeColor="@android:color/black">
 
             <EditText
                 android:layout_width="match_parent"
@@ -71,7 +72,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#DABFDF"
+            android:background="#FFFFFF"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:padding="2dp">
@@ -97,7 +98,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#DABFDF"
+            android:background="#FFFFFF"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:padding="2dp">
@@ -123,7 +124,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#DABFDF"
+            android:background="#FFFFFF"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:padding="2dp">
@@ -150,7 +151,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#DABFDF"
+            android:background="#FFFFFF"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:padding="2dp">
@@ -201,8 +202,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Submit"
+            android:textColor="@color/white"
             android:layout_marginTop="25dp"
-            android:backgroundTint="#DABFDF"
+            android:backgroundTint="#E13023"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:padding="16dp" />
