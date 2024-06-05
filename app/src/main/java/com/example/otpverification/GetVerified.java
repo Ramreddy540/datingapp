@@ -33,7 +33,7 @@ public class GetVerified extends AppCompatActivity {
     private static final int CAMERA_PERMISSION_CODE = 101;
 
     private FirebaseFirestore db;
-    private ImageView imageView; // ImageView to display the captured image
+    private ImageView imageView,imageView1; // ImageView to display the captured image
     private StorageReference storageReference;
 
     @Override
@@ -53,7 +53,15 @@ public class GetVerified extends AppCompatActivity {
         TextView selfieTextView = findViewById(R.id.selfie);
         selfieTextView.setText(getString(R.string.click_the_selfie_same_as_above_imagee));
 
-        imageView = findViewById(R.id.plus); // Initialize the ImageView
+        imageView = findViewById(R.id.plus);
+        imageView1=findViewById(R.id.back);// Initialize the ImageView
+
+        imageView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     public void openCamera(View view) {
