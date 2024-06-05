@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
+    android:background="@drawable/activity_bg"
     tools:context=".StarFragment">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -20,140 +21,187 @@
         android:layout_height="200dp"
         android:layout_margin="25dp"
         app:cardCornerRadius="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/recyclerView"
-        app:layout_constraintVertical_bias="0.968"
-        tools:layout_editor_absoluteX="-14dp"
-        tools:ignore="MissingConstraints">
+        app:cardBackgroundColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recyclerView">
 
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            android:text="My Basics" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="40dp"
-            android:orientation="horizontal">
-
-
-            <ImageView
-                android:id="@+id/imageView1"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                app:srcCompat="@drawable/scale" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/heightTextView"
+                android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="5’5" />
+                android:layout_margin="12dp"
+                android:fontFamily="@font/inter_medium"
+                android:text="My Basics"
+                android:textSize="15sp"
+                android:textColor="#000"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginLeft="60dp"
-                app:srcCompat="@drawable/pray" />
-
-            <TextView
-                android:id="@+id/religionTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Hindu" />
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginLeft="70dp"
-                app:srcCompat="@drawable/single" />
-
-            <TextView
-                android:id="@+id/statusTextView"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Single" />
+                android:id="@+id/linear1"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/textView5"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="10dp"
+                    app:srcCompat="@drawable/scale" />
+
+                <TextView
+                    android:id="@+id/heightTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5’5"
+                    android:textColor="#000"
+                    android:fontFamily="@font/inter_semibold"
+                    android:textSize="18sp"/>
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="60dp"
+                    app:srcCompat="@drawable/pray" />
+
+                <TextView
+                    android:id="@+id/religionTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Hindu"
+                    android:textColor="#000"
+                    android:fontFamily="@font/inter_semibold"
+                    android:textSize="18sp"/>
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="70dp"
+                    app:srcCompat="@drawable/single" />
+
+                <TextView
+                    android:id="@+id/statusTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Single"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="#000"
+                    android:fontFamily="@font/inter_semibold"
+                    android:textSize="18sp"/>
 
 
-        </LinearLayout>
+            </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="234dp"
-            android:layout_height="18dp"
-            android:layout_margin="100dp"
-            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linear2"
+                android:layout_marginTop="25dp"
+                app:layout_constraintTop_toBottomOf="@id/linear1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                app:srcCompat="@drawable/telugu" />
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/telugu" />
 
-            <TextView
-                android:id="@+id/languageTextView"
+                <TextView
+                    android:id="@+id/languageTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Telugu"
+                    android:layout_marginStart="5dp"
+                    android:textColor="#000"
+                    android:fontFamily="@font/inter_semibold"
+                    android:textSize="18sp"/>
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="50dp"
+                    app:srcCompat="@drawable/nonsmoker" />
+
+                <TextView
+                    android:id="@+id/smokeTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Non Smoker"
+                    android:textColor="#000"
+                    android:maxWidth="200dp"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:textSize="18sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Telugu" />
+                android:layout_marginTop="25dp"
+                app:layout_constraintTop_toBottomOf="@id/linear2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginLeft="50dp"
-                app:srcCompat="@drawable/nonsmoker" />
+                <ImageView
+                    android:id="@+id/communityTextView"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/aquaries" />
 
-            <TextView
-                android:id="@+id/smokeTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Non Smoker" />
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="Communityssd"
+                    android:textColor="#000"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/inter_semibold"
+                    android:textSize="18sp"/>
 
-        </LinearLayout>
+                <ImageView
+                    android:id="@+id/imagndhdh"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="40dp"
+                    app:srcCompat="@drawable/drinks" />
 
+                <TextView
+                    android:id="@+id/drinkingTextView"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Drinking"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textColor="#000"
+                    android:fontFamily="@font/inter_semibold"
+                    android:textSize="18sp"/>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="18dp"
-            android:layout_marginTop="150dp"
-            android:orientation="horizontal">
+            </LinearLayout>
 
-            <ImageView
-                android:id="@+id/communityTextView"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="70dp"
-                app:srcCompat="@drawable/aquaries" />
-
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Community" />
-
-            <ImageView
-                android:id="@+id/imagndhdh"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="40dp"
-                app:srcCompat="@drawable/drinks" />
-
-            <TextView
-                android:id="@+id/drinkingTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Drinking" />
-
-        </LinearLayout>
-
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
+
     <TextView
         android:layout_width="100dp"
         android:layout_height="wrap_content"
