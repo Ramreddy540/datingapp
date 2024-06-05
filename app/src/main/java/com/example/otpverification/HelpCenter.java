@@ -3,11 +3,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+
 public class HelpCenter extends AppCompatActivity {
+
+    BottomSheetDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +29,12 @@ public class HelpCenter extends AppCompatActivity {
         LinearLayout ll5 = findViewById(R.id.ll5);
         LinearLayout ll6 = findViewById(R.id.ll6);
         LinearLayout ll7 = findViewById(R.id.ll7);
+
+        dialog = new BottomSheetDialog(this);
+        //inflate view
+        onCreateDialog();
+
+
 
         // Set click listeners for each LinearLayout
         ll1.setOnClickListener(new View.OnClickListener() {
@@ -94,10 +107,34 @@ public class HelpCenter extends AppCompatActivity {
         ll7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigate to LogoutActivity
-                Intent intent = new Intent(HelpCenter.this, LoveAnime.class);
-                startActivity(intent);
+                dialog.show();
             }
         });
+
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
     }
+
+    private void onCreateDialog() {
+
+        View view = LayoutInflater.from(getApplicationContext()).inflate(
+                R.layout.bottomsheet_dialog, null,false);
+
+        view.findViewById(R.id.btnCancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        view.findViewById(R.id.btnConfirm).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(HelpCenter.this, "Logout Succesfully", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+
+        dialog.setContentView(view);
+    }
+
 }

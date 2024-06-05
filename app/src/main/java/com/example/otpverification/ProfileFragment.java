@@ -71,9 +71,6 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-
-
-
         TextView TextView = rootView.findViewById(R.id.editprofile);
         // Get the "Help Center" TextView
         TextView helpCenterTextView = rootView.findViewById(R.id.helpCenterTextView);

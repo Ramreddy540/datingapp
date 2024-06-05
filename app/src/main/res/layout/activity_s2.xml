@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingStart="50dp"
+        android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:paddingTop="20dp">
 
@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:text="Skip"
             android:layout_gravity="end"
-            android:layout_marginTop="20dp" />
+             />
 
         <TextView
             android:id="@+id/About"
