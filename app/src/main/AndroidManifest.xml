@@ -52,7 +52,7 @@
             android:name=".AS"
             android:exported="false" />
         <activity
-            android:name=".SupportActivity"
+            android:name=".DeleteActivity"
             android:exported="false" />
         <activity
             android:name=".S2"
@@ -61,16 +61,16 @@
             android:name=".MainActivity2"
             android:exported="false" />
         <activity
-            android:name=".DeleteActivity"
+            android:name=".S1"
             android:exported="false" />
         <activity
             android:name=".ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".LoveAnime"
+            android:name=".HelpCenter"
             android:exported="false" />
         <activity
-            android:name=".S1"
+            android:name=".SupportActivity"
             android:exported="false" />
 
         <activity
@@ -87,7 +87,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".HelpCenter"
+            android:name=".LoveAnime"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
 

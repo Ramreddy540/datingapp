@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
+    android:background="#EADDDD"
     tools:context=".ProfileActivity">
 
     <LinearLayout
@@ -158,6 +159,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -181,5 +183,24 @@
             tools:layout_editor_absoluteY="254dp" />
 
     </LinearLayout>
-    
+
+    <Button
+        android:id="@+id/btnDatingApp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
+        android:background="@drawable/background_button"
+        android:backgroundTint="#F25081"
+        android:fontFamily="@font/inter"
+        android:padding="18dp"
+        android:text="DATING APP"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout8" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

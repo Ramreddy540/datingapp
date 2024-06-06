@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.RadioButton;
@@ -18,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -35,6 +38,7 @@ public class S1 extends AppCompatActivity {
     private Button buttonNext;
     private FirebaseFirestore db;
     private Calendar calendar;
+    BottomSheetDialog dialog;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -52,6 +56,10 @@ public class S1 extends AppCompatActivity {
         radioGroup = findViewById(R.id.gender);
         buttonNext = findViewById(R.id.next);
 
+        dialog = new BottomSheetDialog(this);
+
+        onCreateDialog();
+
         editTextDOB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,16 +70,38 @@ public class S1 extends AppCompatActivity {
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Validate inputs before proceeding
-                if (validateInputs()) {
-                    // Save data to Firestore
-                    saveDataToFirestore();
 
-                    // Move to the next activity
-                    moveToNextActivity();
-                }
+                dialog.show();
             }
         });
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+    }
+
+    private void onCreateDialog() {
+        View view = LayoutInflater.from(getApplicationContext()).inflate(
+                R.layout.s1bottomsheet_dialog, null,false);
+
+        view.findViewById(R.id.buttonCancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        view.findViewById(R.id.buttonNext).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (validateInputs()) {
+
+                    saveDataToFirestore();
+
+                    moveToNextActivity();
+                }
+                dialog.dismiss();
+            }
+        });
+        dialog.setContentView(view);
     }
 
     private void showDatePickerDialog() {

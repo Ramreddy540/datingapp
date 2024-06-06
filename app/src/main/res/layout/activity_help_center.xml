@@ -11,28 +11,36 @@
     <LinearLayout
         android:id="@+id/linearLayout7"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/helpCenter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Help Center"
-            android:layout_marginTop="30dp"
-            android:layout_gravity="center|center_horizontal"
-            android:textColor="@color/black"
-            android:textSize="32dp"
-            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/baseline_arrow_back_ios_24"/>
 
+            <ImageButton
+                android:id="@+id/idArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_arrow_back_ios_24" />
+
+            <TextView
+                android:id="@+id/helpCenter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Help Center"
+                android:textColor="@color/black"
+                android:textSize="32dp"
+                android:gravity="center"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -3,33 +3,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical">-->
+
     <LinearLayout
+        android:id="@+id/linearLayout7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
 
 
-        <ImageView
-            android:id="@+id/ArrowBackward"
-            android:layout_width="39dp"
-            android:layout_height="38dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="36dp"
-            android:contentDescription="Arrow Backward"
-            android:src="@drawable/baseline_arrow_back_ios_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+         <ImageView
+             android:id="@+id/ArrowBackward"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_margin="12dp"
+             android:src="@drawable/baseline_arrow_back_ios_24"/>
 
-        </ImageView>
-
-        <TextView
+         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Submit a Request"
+            android:gravity="center"
             android:textColor="@color/black"
             android:textSize="32dp"
-            android:textStyle="bold"
-            android:padding="16dp" />
+            android:textStyle="bold" />
+
+       </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
@@ -44,15 +55,15 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF"
+            android:background="@drawable/supportbg"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:padding="2dp"
             app:boxStrokeColor="@android:color/black">
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/transparent"
+                android:layout_height="match_parent"
                 android:hint=""
                 android:inputType="textEmailAddress" />
 
@@ -72,16 +83,16 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
+            android:background="@drawable/supportbg"
             android:padding="2dp">
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:hint=""
+                android:backgroundTint="@android:color/transparent"
                 android:inputType="textEmailAddress" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -98,7 +109,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF"
+            android:background="@drawable/supportbg"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:padding="2dp">
@@ -107,6 +118,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint=""
+                android:backgroundTint="@android:color/transparent"
                 android:inputType="textEmailAddress" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -124,7 +136,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF"
+            android:background="@drawable/supportbg"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:padding="2dp">
@@ -133,6 +145,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint=""
+                android:backgroundTint="@android:color/transparent"
                 android:inputType="textEmailAddress" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -151,7 +164,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF"
+            android:background="@drawable/supportbg"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:padding="2dp">
@@ -161,6 +174,7 @@
                 android:layout_height="wrap_content"
                 android:hint=""
                 android:minLines="3"
+                android:backgroundTint="@android:color/transparent"
                 android:inputType="textMultiLine" />
 
         </com.google.android.material.textfield.TextInputLayout>

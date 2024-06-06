@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -15,6 +17,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 public class HelpCenter extends AppCompatActivity {
 
     BottomSheetDialog dialog;
+    ImageButton backArrow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +32,18 @@ public class HelpCenter extends AppCompatActivity {
         LinearLayout ll5 = findViewById(R.id.ll5);
         LinearLayout ll6 = findViewById(R.id.ll6);
         LinearLayout ll7 = findViewById(R.id.ll7);
+        backArrow = findViewById(R.id.idArrow);
 
         dialog = new BottomSheetDialog(this);
         //inflate view
         onCreateDialog();
 
-
+        backArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         // Set click listeners for each LinearLayout
         ll1.setOnClickListener(new View.OnClickListener() {
