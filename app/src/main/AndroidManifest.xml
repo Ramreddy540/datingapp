@@ -67,7 +67,7 @@
             android:name=".ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".HelpCenter"
+            android:name=".LoveAnime"
             android:exported="false" />
         <activity
             android:name=".S1"
@@ -87,7 +87,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".LoveAnime"
+            android:name=".HelpCenter"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
 
