@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navStar"
+        android:icon="@drawable/baseline_star_border_24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="@string/favourite" />
+    <item
+        android:id="@+id/navlike"
+        android:icon="@drawable/baseline_favorite_border_24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="@string/like" />
+    <item
+        android:id="@+id/navmessage"
+        android:icon="@drawable/baseline_message_24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="@string/chats" />
+    <item
+        android:id="@+id/navprofile"
+        android:icon="@drawable/person"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="@string/profile" />
+</menu>

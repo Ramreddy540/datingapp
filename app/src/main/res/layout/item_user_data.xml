@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_alignParentTop="true" />
+
+
+<!--    <TextView-->
+<!--        android:id="@+id/heightTextView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textSize="18sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:textColor="@android:color/black"-->
+<!--        android:layout_below="@id/viewPager"-->
+<!--        android:text="Height" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/religionTextView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textSize="18sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:textColor="@android:color/black"-->
+<!--        android:layout_below="@id/heightTextView"-->
+<!--        android:text="Religion" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/communityTextView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textSize="18sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:textColor="@android:color/black"-->
+<!--        android:layout_below="@id/religionTextView"-->
+<!--        android:text="Community" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/smokeTextView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textSize="18sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:textColor="@android:color/black"-->
+<!--        android:layout_below="@id/communityTextView"-->
+<!--        android:text="Smoke" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/statusTextView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textSize="18sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:textColor="@android:color/black"-->
+<!--        android:layout_below="@id/smokeTextView"-->
+<!--        android:text="Status" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/drinkingTextView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textSize="18sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:textColor="@android:color/black"-->
+<!--        android:layout_below="@id/statusTextView"-->
+<!--        android:text="Drinking" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/languageTextView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textSize="18sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:textColor="@android:color/black"-->
+<!--        android:layout_below="@id/drinkingTextView"-->
+<!--        android:text="Language" />-->
+</RelativeLayout>

@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@drawable/activity_bg"
+    tools:context=".StarFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_alignParentTop="true"
+        app:layout_constraintTop_toTopOf="@id/g1"
+        tools:listitem="@layout/item_user_data"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_margin="25dp"
+        app:cardCornerRadius="30dp"
+        android:id="@+id/c1"
+        app:cardBackgroundColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recyclerView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:fontFamily="@font/inter_medium"
+                android:text="My Basics"
+                android:textSize="15sp"
+                android:textColor="#000"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/linear1"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/textView5"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="10dp"
+                    app:srcCompat="@drawable/scale" />
+
+                <TextView
+                    android:id="@+id/heightTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5’5"
+                    android:textColor="#000"
+                    android:fontFamily="@font/inter_semibold"
+                    android:textSize="18sp"/>
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="60dp"
+                    app:srcCompat="@drawable/pray" />
+
+                <TextView
+                    android:id="@+id/religionTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Hindu"
+                    android:textColor="#000"
+                    android:fontFamily="@font/inter_semibold"
+                    android:textSize="18sp"/>
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="70dp"
+                    app:srcCompat="@drawable/single" />
+
+                <TextView
+                    android:id="@+id/statusTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Single"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="#000"
+                    android:fontFamily="@font/inter_semibold"
+                    android:textSize="18sp"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linear2"
+                android:layout_marginTop="25dp"
+                app:layout_constraintTop_toBottomOf="@id/linear1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/telugu" />
+
+                <TextView
+                    android:id="@+id/languageTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Telugu"
+                    android:layout_marginStart="5dp"
+                    android:textColor="#000"
+                    android:fontFamily="@font/inter_semibold"
+                    android:textSize="18sp"/>
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="50dp"
+                    app:srcCompat="@drawable/nonsmoker" />
+
+                <TextView
+                    android:id="@+id/smokeTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Non Smoker"
+                    android:textColor="#000"
+                    android:maxWidth="200dp"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:textSize="18sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                app:layout_constraintTop_toBottomOf="@id/linear2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/communityTextView"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/aquaries" />
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="Communityssd"
+                    android:textColor="#000"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/inter_semibold"
+                    android:textSize="18sp"/>
+
+                <ImageView
+                    android:id="@+id/imagndhdh"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="40dp"
+                    app:srcCompat="@drawable/drinks" />
+
+                <TextView
+                    android:id="@+id/drinkingTextView"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Drinking"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textColor="#000"
+                    android:fontFamily="@font/inter_semibold"
+                    android:textSize="18sp"/>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Honey"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:id="@+id/name1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/g1"/>
+
+    <ImageView
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:id="@+id/name3"
+        app:layout_constraintTop_toBottomOf="@id/name1"
+        app:layout_constraintBottom_toBottomOf="@id/g1"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/verifyy"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="Verified"
+        android:id="@+id/name4"
+        app:layout_constraintStart_toStartOf="@id/name3"
+        app:layout_constraintTop_toBottomOf="@id/name1"
+        android:layout_marginStart="12dp"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="24"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:id="@+id/name2"
+        app:layout_constraintStart_toEndOf="@id/name1"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/g1"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/guideline"
+        app:layout_constraintGuide_percent="0.5"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/g1"
+        app:layout_constraintGuide_percent="0.1"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/g2"
+        app:layout_constraintGuide_percent="0.6"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/i1"
+        android:src="@drawable/reject"
+        app:layout_constraintTop_toBottomOf="@id/c1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guideline" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/i2"
+        android:src="@drawable/like"
+        app:layout_constraintTop_toBottomOf="@id/c1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

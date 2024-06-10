@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name">OTP Verification</string>
+    <string name="upload_image">Upload your image With Smile</string>
+    <string name="otp_verification">OTP Verification</string>
+    <string name="we_will_send_you_an_one_time_password_on_the_moblie_number">we will send you an One Time Password on the moblie number</string>
+    <string name="enter_mobile_number">Enter Moblie Number</string>
+    <string name="get_otp">GET OTP</string>
+    <string name="enter_the_otp_sent_to">Enter the OTP sent to</string>
+    <string name="resend_otp">Resend OTP</string>
+    <string name="didn_t_received_the_otp">Didn\'t received the OTP</string>
+    <string name="verify">verify</string>
+    <string name="Making_memories">Making_memories</string>
+    <string name="one_day">one_day</string>
+    <string name="at_a_time">at_a_time\\</string>
+    <string name="Otp_verification">Otp_verification</string>
+    <string name="didn_t_receive_the_otp">didn_t_receive_the_otp</string>
+    <string name="Resend_otp">Resend_otp</string>
+    <string name="what_s_your_height">what\'s your Height</string>
+    <string name="What_s_your_height">What_s_your_height</string>
+    <string name="what_s_your_religion">What\'s Your Religion</string>
+    <string name="what_s_your_community">What\'s your Community</string>
+    <string name="do_you_smoke">Do You Smoke</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="favourite">Favourite</string>
+    <string name="like">Like</string>
+    <string name="chats">Chats</string>
+    <string name="profile">Profile</string>
+    <string name="title_activity_get_started">GetStartedActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="by_signing">By signing up, you agree to our Terms. See how we use your data in our Privacy Policy.</string>
+    <string name="get_started">Get Started</string>
+    <string name="application_aimed">Application aimed at singles looking for a serious Relationship</string>
+    <string name="find_your_perfect_partner">Find your Perfect Partner</string>
+    <string name="your_status">Your Status</string>
+    <string name="your_drinking_habits">Your Drinking Habits</string>
+    <string name="mother_toungue">Mother Toungue</string>
+    <string name="submit">submit</string>
+    <string name="Submit">Submit</string>
+    <string name="Get_Verified">Get_Verified</string>
+    <string name="save">save</string>
+    <string name="click_the_selfie_same_as_above_image">aaaa</string>
+    <string name="click_the_selfie_same_as_above_imagee">Click the selfie same as above image</string>
+    <string name="Get_Verifiedd">Get Verified</string>
+    <string name="religion">Religion:</string>
+    <string name="community">Community:</string>
+    <string name="smoke">Smoke:</string>
+    <string name="status">Status:</string>
+    <string name="drinking">Drinking:</string>
+    <string name="language">Language:</string>
+    <string name="height">Height:</string>
+    <string name="send_button">send_button</string>
+    <string name="emoji_button">emoji_button</string>
+    <string name="item_image_desc">Item image</string>
+</resources>
