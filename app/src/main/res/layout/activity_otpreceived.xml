@@ -40,6 +40,7 @@
             android:text="@string/enter_the_otp_sent_to"
             android:textSize="14sp"
             android:textColor="@color/colorTextSecondary"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -51,12 +52,14 @@
             android:textSize="10sp"
             android:textColor="@color/colorTextPrimary"
             android:textStyle="bold"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:orientation="horizontal">
+
             <EditText
                 android:layout_width="40dp"
                 android:layout_height="45dp"
@@ -70,6 +73,7 @@
                 android:textSize="24sp"
                 android:textStyle="bold"
                 tools:ignore="LabelFor"/>
+
             <EditText
                 android:layout_width="40dp"
                 android:layout_height="45dp"
@@ -83,6 +87,7 @@
                 android:textSize="24sp"
                 android:textStyle="bold"
                 tools:ignore="LabelFor"/>
+
             <EditText
                 android:layout_width="40dp"
                 android:layout_height="45dp"
@@ -96,6 +101,7 @@
                 android:textSize="24sp"
                 android:textStyle="bold"
                 tools:ignore="LabelFor"/>
+
             <EditText
                 android:layout_width="40dp"
                 android:layout_height="45dp"
@@ -109,6 +115,7 @@
                 android:textSize="24sp"
                 android:textStyle="bold"
                 tools:ignore="LabelFor"/>
+
             <EditText
                 android:layout_width="40dp"
                 android:layout_height="45dp"
@@ -122,6 +129,7 @@
                 android:textSize="24sp"
                 android:textStyle="bold"
                 tools:ignore="LabelFor"/>
+
             <EditText
                 android:layout_width="40dp"
                 android:layout_height="45dp"
@@ -187,6 +195,7 @@
                 android:visibility="gone"/>
 
         </FrameLayout>
+
     </LinearLayout>
 
 </ScrollView>

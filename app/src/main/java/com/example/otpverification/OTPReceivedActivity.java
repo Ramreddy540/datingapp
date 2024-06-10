@@ -26,23 +26,24 @@ import java.util.concurrent.TimeUnit;
 
 public class OTPReceivedActivity extends AppCompatActivity {
 
-    private EditText intputcode1,intputcode2,intputcode3,intputcode4,intputcode5,intputcode6;
+    private EditText otpEditText1,otpEditText2,otpEditText3,otpEditText4,otpEditText5,otpEditText6;
 
     private String verificatonID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otpreceived);
        TextView textMobile=findViewById(R.id.textmoblie);
-        textMobile.setText(String.format("+91-%s",getIntent().getStringExtra("moblie")));
-        intputcode1=findViewById(R.id.inputcode1);
-        intputcode2=findViewById(R.id.inputcode2);
-        intputcode3=findViewById(R.id.inputcode3);
-        intputcode4=findViewById(R.id.inputcode4);
-        intputcode5=findViewById(R.id.inputcode5);
-        intputcode6=findViewById(R.id.inputcode6);
+        textMobile.setText(String.format("+91-%s",getIntent().getStringExtra("mobile")));
+        otpEditText1=findViewById(R.id.inputcode1);
+        otpEditText2=findViewById(R.id.inputcode2);
+        otpEditText3=findViewById(R.id.inputcode3);
+        otpEditText4=findViewById(R.id.inputcode4);
+        otpEditText5=findViewById(R.id.inputcode5);
+        otpEditText6=findViewById(R.id.inputcode6);
 
-        setupOTPInputs();
+        setupOtpEditTexts();
         final ProgressBar progressBar=findViewById(R.id.progessBarr);
         final Button buttonVerify=findViewById(R.id.buttonverify);
 
@@ -52,22 +53,22 @@ public class OTPReceivedActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (intputcode1.getText().toString().trim().isEmpty()
-                        || intputcode2.getText().toString().trim().isEmpty()
-                        || intputcode3.getText().toString().trim().isEmpty()
-                        || intputcode4.getText().toString().trim().isEmpty()
-                        || intputcode5.getText().toString().trim().isEmpty()
-                        || intputcode6.getText().toString().trim().isEmpty()) {
+                if (otpEditText1.getText().toString().trim().isEmpty()
+                        || otpEditText2.getText().toString().trim().isEmpty()
+                        || otpEditText3.getText().toString().trim().isEmpty()
+                        || otpEditText4.getText().toString().trim().isEmpty()
+                        || otpEditText5.getText().toString().trim().isEmpty()
+                        || otpEditText6.getText().toString().trim().isEmpty()) {
                     Toast.makeText(OTPReceivedActivity.this, "Please enter valid code", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 String code=
-                        intputcode1.getText().toString()+
-                        intputcode2.getText().toString()+
-                        intputcode3.getText().toString()+
-                        intputcode4.getText().toString()+
-                        intputcode5.getText().toString()+
-                        intputcode6.getText().toString();
+                        otpEditText1.getText().toString()+
+                                otpEditText2.getText().toString()+
+                                otpEditText3.getText().toString()+
+                                otpEditText4.getText().toString()+
+                                otpEditText5.getText().toString()+
+                                otpEditText6.getText().toString();
 
            if (verificatonID != null) {
            progressBar.setVisibility(View.VISIBLE);
@@ -122,96 +123,43 @@ public class OTPReceivedActivity extends AppCompatActivity {
         }
     });
     }
-    private void setupOTPInputs(){
-        intputcode1.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+    private void setupOtpEditTexts() {
+        otpEditText1.addTextChangedListener(new OtpTextWatcher(otpEditText1, otpEditText2));
+        otpEditText2.addTextChangedListener(new OtpTextWatcher(otpEditText2, otpEditText3));
+        otpEditText3.addTextChangedListener(new OtpTextWatcher(otpEditText3, otpEditText4));
+        otpEditText4.addTextChangedListener(new OtpTextWatcher(otpEditText4, otpEditText5));
+        otpEditText5.addTextChangedListener(new OtpTextWatcher(otpEditText5, otpEditText6));
+        otpEditText6.addTextChangedListener(new OtpTextWatcher(otpEditText6, null));
+    }
 
-            }
+    private class OtpTextWatcher implements TextWatcher {
+        private View currentView;
+        private View nextView;
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-             if (s.toString().trim().isEmpty()){
-              intputcode2.requestFocus();
-             }
-            }
+        public OtpTextWatcher(View currentView, View nextView) {
+            this.currentView = currentView;
+            this.nextView = nextView;
+        }
 
-            @Override
-            public void afterTextChanged(Editable s) {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
 
-            }
-        });
-        intputcode2.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-             if (s.toString().trim().isEmpty()){
-              intputcode3.requestFocus();
-             }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-        intputcode3.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.toString().trim().isEmpty()){
-                    intputcode4.requestFocus();
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            if (s.length() == 1) {
+                if (nextView != null) {
+                    nextView.requestFocus();
+                }
+            } else if (s.length() == 0) {
+                if (currentView != null) {
+                    currentView.requestFocus();
                 }
             }
+        }
 
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-        intputcode4.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.toString().trim().isEmpty()){
-                    intputcode5.requestFocus();
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-        intputcode5.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.toString().trim().isEmpty()){
-                    intputcode6.requestFocus();
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
+        @Override
+        public void afterTextChanged(Editable s) {
+        }
     }
 }

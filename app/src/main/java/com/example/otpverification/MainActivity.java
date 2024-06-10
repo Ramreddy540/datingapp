@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import com.example.otpverification.Fragments.User_Chat_Fragment;
 import com.example.otpverification.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
                         fragmentTransaction.replace(R.id.framelayout, new HeartFragment());
                         break;
                     case R.id.navmessage:
-                        fragmentTransaction.replace(R.id.framelayout, new MessageFragment());
+                        fragmentTransaction.replace(R.id.framelayout, new User_Chat_Fragment());
                         break;
                     case R.id.navprofile:
                         fragmentTransaction.replace(R.id.framelayout, new ProfileFragment());
