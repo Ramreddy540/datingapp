@@ -38,8 +38,8 @@ public class User_Chat_Fragment extends Fragment {
 
     // Replace these with dynamic values based on user selection or authentication
     private String chatId = "chatId1";
-    private String userId = "user1";
-    private String receiverId = "user2";
+    private String userId = "user2";
+    private String receiverId = "user1";
 
 
     public User_Chat_Fragment() {
