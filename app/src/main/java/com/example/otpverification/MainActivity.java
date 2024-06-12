@@ -1,6 +1,7 @@
 package com.example.otpverification;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
                 int itemId = item.getItemId();
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                Fragment selectedFragment = null;
 
                 switch (itemId) {
 
@@ -45,12 +47,20 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.navprofile:
                         fragmentTransaction.replace(R.id.framelayout, new ProfileFragment());
                         break;
-
                 }
 
                 fragmentTransaction.commit();
                 return true;
             }
         });
+
+
+        // Load default fragment
+        if (savedInstanceState == null) {
+            Fragment defaultFragment = new StarFragment(); // Replace with your default fragment
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.framelayout, defaultFragment)
+                    .commit();
+        }
     }
 }
