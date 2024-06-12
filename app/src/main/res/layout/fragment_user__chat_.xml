@@ -19,7 +19,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_gravity="bottom"
+        android:background="@drawable/chatbg"
         android:padding="8dp">
+
+<!--        <ImageButton-->
+<!--            android:id="@+id/emoji"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/ic_emoji" />-->
 
         <EditText
             android:id="@+id/messageEditText"
@@ -28,11 +35,11 @@
             android:layout_weight="1"
             android:hint="Type a message" />
 
-        <Button
+        <ImageButton
             android:id="@+id/sendButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Send" />
+            android:src="@drawable/ic_send" />
 
     </LinearLayout>
 

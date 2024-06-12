@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.example.otpverification.Adapter.MessageAdapter;
 import com.example.otpverification.Models.Message;
@@ -31,7 +32,7 @@ public class User_Chat_Fragment extends Fragment {
 
     private RecyclerView recyclerView;
     private EditText messageEditText;
-    private Button sendButton;
+    private ImageButton sendButton;
     private MessageAdapter messageAdapter;
     private List<Message> messageList;
     private DatabaseReference chatReference;

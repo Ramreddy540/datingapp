@@ -1,3 +1,5 @@
+
+
 package com.example.otpverification;
 
 import android.os.Bundle;
@@ -12,10 +14,11 @@ import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.otpverification.Fragments.User_Chat_Fragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MessageFragment extends Fragment {
+public class MessageFragment extends Fragment implements MemberAdapter.OnItemClickListener {
 
     private SearchView searchView;
     private RecyclerView recyclerView;
@@ -60,10 +63,10 @@ public class MessageFragment extends Fragment {
         memberList.add(new Member("Jane Smith", R.drawable.kp, "Let's catch up later.", "1:15 PM", 1));
         memberList.add(new Member("John Doe", R.drawable.jack, "Hey, how are you?", "12:45 PM", 2));
         memberList.add(new Member("Jane Smith", R.drawable.kp, "Let's catch up later.", "1:15 PM", 1));
-        // Add more members as needed
+
 
         // Set up RecyclerView
-        memberAdapter = new MemberAdapter(memberList);
+        memberAdapter = new MemberAdapter(memberList, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(memberAdapter);
 
@@ -83,6 +86,20 @@ public class MessageFragment extends Fragment {
                 return false;
             }
         });
+    }
 
+    @Override
+    public void onItemClick(Member member) {
+        // Handle the item click and open the new fragment
+        Fragment newFragment = new User_Chat_Fragment(); // Replace with your target fragment
+        Bundle args = new Bundle();
+        args.putString("member_name", member.getName()); // Pass any required data
+        newFragment.setArguments(args);
+
+        getParentFragmentManager().beginTransaction()
+                .replace(R.id.framelayout, newFragment) // Make sure to use the correct container ID
+                .addToBackStack(null)
+                .commit();
     }
 }
+
