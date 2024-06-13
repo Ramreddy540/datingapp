@@ -82,6 +82,7 @@ public class OTPReceivedActivity extends AppCompatActivity {
                               buttonVerify.setVisibility(View.VISIBLE);
                               if (task.isSuccessful()){
                                   Intent intent=new Intent(getApplicationContext(),MainActivity2.class);
+                                  intent.putExtra("mobile",getIntent().getStringExtra("mobile"));
                                   intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                   startActivity(intent);
                               }else {

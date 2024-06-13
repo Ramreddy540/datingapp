@@ -13,10 +13,8 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_alignParentTop="true"
         app:layout_constraintTop_toTopOf="@id/g1"
-        tools:listitem="@layout/item_user_data"
-        tools:ignore="MissingConstraints" />
+        tools:listitem="@layout/item_user_data" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"

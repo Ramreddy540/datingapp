@@ -18,19 +18,28 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public class MainActivity2 extends AppCompatActivity {
     private ImageView ivPhoto1, ivPhoto2, ivPhoto3;
-
+    private Uri uri1, uri2, uri3;
+    private List<Uri> imageUris = new ArrayList<>();
     private final int REQUEST_CODE_PHOTO_1 = 1;
     private final int REQUEST_CODE_PHOTO_2 = 2;
     private final int REQUEST_CODE_PHOTO_3 = 3;
-    private StorageReference storageReference;
+    private FirebaseFirestore db;
+
+    private String phoneNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +50,11 @@ public class MainActivity2 extends AppCompatActivity {
         ivPhoto2 = findViewById(R.id.profileimage2);
         ivPhoto3 = findViewById(R.id.profileimage3);
 
+        phoneNum = getIntent().getStringExtra("mobile");
+
         // Initialize Firebase Storage
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        storageReference = storage.getReference();
+        db = FirebaseFirestore.getInstance();
 
         // Set OnClickListener for profile images
         setProfileImageOnClickListener(ivPhoto1, REQUEST_CODE_PHOTO_1);
@@ -55,6 +66,7 @@ public class MainActivity2 extends AppCompatActivity {
         moveToNextActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 moveToNextActivity();
             }
         });
@@ -64,6 +76,9 @@ public class MainActivity2 extends AppCompatActivity {
         skipTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Toast.makeText(MainActivity2.this,
+                        "Image uploaded", Toast.LENGTH_LONG).show();
                 moveToNextActivity();
             }
         });
@@ -73,6 +88,7 @@ public class MainActivity2 extends AppCompatActivity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 openGallery(requestCode);
             }
         });
@@ -92,45 +108,50 @@ public class MainActivity2 extends AppCompatActivity {
             // Set the selected image to the appropriate ImageView
             if (requestCode == REQUEST_CODE_PHOTO_1) {
                 ivPhoto1.setImageURI(uri);
+                uri1 = uri;
             } else if (requestCode == REQUEST_CODE_PHOTO_2) {
                 ivPhoto2.setImageURI(uri);
+                uri2 = uri;
             } else if (requestCode == REQUEST_CODE_PHOTO_3) {
                 ivPhoto3.setImageURI(uri);
+                uri3 = uri;
             }
             // Upload the selected image to Firebase Storage
-            uploadImageToFirebase(uri);
+            uploadImageToFirebase(uri, phoneNum);
         }
     }
 
-    private void uploadImageToFirebase(Uri uri) {
-        String imageId = UUID.randomUUID().toString();
-        StorageReference imageRef = storageReference.child("images/" + imageId);
-        imageRef.putFile(uri)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+    private void uploadImageToFirebase(Uri uri, String phoneNum) {
+
+        Map<String, Object> user = new HashMap<>();
+        user.put("image1", uri1);
+        user.put("image2", uri2);
+        user.put("image3", uri3);
+
+        db.collection(phoneNum).document("step1").set(user)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        // If the image upload is successful, save its URL to the Firebase Realtime Database
-                        imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                            @Override
-                            public void onSuccess(Uri uri) {
-                                String imageUrl = uri.toString();
-                                saveImageUrlToDatabase(imageUrl);
-                            }
-                        });
+                    public void onSuccess(Void unused) {
+
+
+                saveImageUrlToDatabase(uri.toString());
+
                     }
-                })
-                .addOnFailureListener(new OnFailureListener() {
+                }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        // Handle failure to upload image
-                        Toast.makeText(MainActivity2.this, "Failed to upload image: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                        Log.e("FirebaseStorage", "Failed to upload image", e);
+
+                        Log.d("TAG", "onFailure: "+e.getLocalizedMessage());
+
                     }
                 });
+
+
     }
 
     private void saveImageUrlToDatabase(String imageUrl) {
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("images");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance()
+                .getReference("images");
         String imageId = databaseReference.push().getKey();
         databaseReference.child(imageId).setValue(imageUrl)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
