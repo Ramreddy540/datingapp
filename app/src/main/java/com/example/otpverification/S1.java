@@ -22,6 +22,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -32,15 +33,14 @@ import java.util.Locale;
 import java.util.Map;
 
 public class S1 extends AppCompatActivity {
-
     private TextInputEditText editTextFirstName, editTextLastName, editTextEmail, editTextDOB;
     private RadioGroup radioGroup;
     private Button buttonNext;
     private FirebaseFirestore db;
     private Calendar calendar;
     BottomSheetDialog dialog;
+    private String Number;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -144,23 +144,23 @@ public class S1 extends AppCompatActivity {
         user.put("dob", dob);
         user.put("gender", gender);
 
+        String numb = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber();
+        Number = numb.replace("+91", "");
+
         // Add data to Firestore
-        db.collection("Basic Detail")
-                .add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        db.collection(Number).document("step2")
+                .set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d("S1", "DocumentSnapshot added with ID: " + documentReference.getId());
-                        // Handle success
+                    public void onSuccess(Void unused) {
+                        Log.d("TAG", "onSuccess: Step 2 successfull");
                     }
-                })
-                .addOnFailureListener(new OnFailureListener() {
+                }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.w("S1", "Error adding document", e);
-                        // Handle failure
+                        Log.d("TAG", "onFailure: "+e.getLocalizedMessage());
                     }
                 });
+
     }
 
     private boolean isValidEmail(CharSequence target) {
@@ -200,6 +200,7 @@ public class S1 extends AppCompatActivity {
 
     private void moveToNextActivity() {
         Intent intent = new Intent(S1.this, S2.class);
+        intent.putExtra("mobile",Number);
         startActivity(intent);
     }
 }

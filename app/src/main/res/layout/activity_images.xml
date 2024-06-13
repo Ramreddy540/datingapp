@@ -7,14 +7,10 @@
     android:layout_height="match_parent"
     tools:context=".ImagesActivity">
 
-
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:listitem="@layout/item_image_with_text"/>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
