@@ -112,7 +112,7 @@ public class S2 extends AppCompatActivity {
         data.put("Drinking", drinking);
         data.put("Language", language);
 
-        String number = getIntent().getStringExtra("number");
+        String number = getIntent().getStringExtra("mobile");
         // Save the data to Firestore with the user's UID as the document ID
         db.collection(number)
                 .document("step3") // Use the user's UID as the document ID
@@ -121,7 +121,7 @@ public class S2 extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(S2.this, "Data saved to Firestore", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(S2.this, "Data saved", Toast.LENGTH_SHORT).show();
                             moveToNextActivity(); // Move to the next activity after data is saved
                         } else {
                             Toast.makeText(S2.this, "Failed to save data to Firestore: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();

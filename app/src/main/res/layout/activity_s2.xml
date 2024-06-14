@@ -148,9 +148,13 @@
 
         <Button
             android:id="@+id/submit_button"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Next>"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:background="@drawable/background_orange"
+            android:textColor="@color/white"
             android:layout_gravity="center"
             android:layout_marginTop="20dp" />
 

@@ -73,7 +73,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             statusTextView = itemView.findViewById(R.id.statusTextView);
             drinkingTextView = itemView.findViewById(R.id.drinkingTextView);
             languageTextView = itemView.findViewById(R.id.languageTextView);
-            viewPager = itemView.findViewById(R.id.viewPager);
+            viewPager = itemView.findViewById(R.id.viewPager2);
         }
     }
 }

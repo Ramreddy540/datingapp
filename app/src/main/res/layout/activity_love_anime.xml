@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#616265"
+    android:background="#cecece"
     tools:context=".LoveAnime">
 
     <TextView
@@ -27,4 +27,5 @@
         android:elevation="5dp"
         app:lottie_autoPlay="true"
         app:lottie_rawRes="@raw/love" />
+
 </RelativeLayout>
