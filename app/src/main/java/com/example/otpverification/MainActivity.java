@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                         fragmentTransaction.replace(R.id.framelayout, new HeartFragment());
                         break;
                     case R.id.navmessage:
-                        fragmentTransaction.replace(R.id.framelayout, new User_Chat_Fragment());
+                        fragmentTransaction.replace(R.id.framelayout, new MessageFragment());
                         break;
                     case R.id.navprofile:
                         fragmentTransaction.replace(R.id.framelayout, new ProfileFragment());

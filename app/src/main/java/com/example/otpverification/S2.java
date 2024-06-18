@@ -113,9 +113,8 @@ public class S2 extends AppCompatActivity {
         data.put("Language", language);
 
         String number = getIntent().getStringExtra("mobile");
-        // Save the data to Firestore with the user's UID as the document ID
-        db.collection(number)
-                .document("step3") // Use the user's UID as the document ID
+
+        db.collection("users").document(number)
                 .set(data) // Set data for the document
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
