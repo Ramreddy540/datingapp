@@ -1,5 +1,6 @@
 package com.example.otpverification;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,25 +19,31 @@ import com.example.otpverification.Adapter.ImagePagerAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.razorpay.Checkout;
+import com.razorpay.PaymentResultListener;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class StarFragment extends Fragment {
-
-    private static final String TAG = "Star";
+public class StarFragment extends Fragment implements PaymentResultListener  {
 
     private ViewPager2 viewPager2;
 
     private List<String> imageUrls;
     private ImagePagerAdapter adapter;
     private FirebaseFirestore db;
+    private static final int SCROLL_THRESHOLD = 2; // Number of scrolls required
+    private int verticalScrollCount = 0;
+    private int previousPosition = 0;
 
     private UserAdapter userAdapter;
     private List<User> userList;
@@ -76,72 +83,76 @@ public class StarFragment extends Fragment {
 
         viewPager2.setOrientation(ViewPager2.ORIENTATION_VERTICAL);
 
+        setupScrollListener();
+
 //        fetchData();
 
         //fetchAllUserCollections();
 
     }
 
-    public void fetchImageUrls(final OnCompleteListener<List<String>> listener) {
-        db.collectionGroup("step1").get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (DocumentSnapshot document : task.getResult()) {
-                                if (document.exists() && document.contains("image1")) {
-                                    String imageUrl = document.getString("image1");
-                                    imageUrls.add(imageUrl);
-                                }
-                            }
-
-                        } else {
-
-                        }
-                    }
-
-
-                });
-    }
-
-    private void fetchAllUserCollections() {
-        CollectionReference usersCollection = db.collection("users");
-        usersCollection.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                for (QueryDocumentSnapshot document : task.getResult()) {
-                    String userId = document.getId(); // This is the phone number
-                    fetchImageUrlFromUserCollection(userId);
+    private void setupScrollListener() {
+        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                if (position > previousPosition) {
+                    verticalScrollCount++;
+                    Log.d("TAG", "Scroll count: " + verticalScrollCount);
+                    checkScrollCount();
                 }
-            } else {
-                Log.w(TAG, "Error getting user collections.", task.getException());
+                previousPosition = position;
             }
         });
     }
 
-    private void fetchImageUrlFromUserCollection(String userId) {
-        db.collection("users").document(userId).collection("steps").document("step1").get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document.exists()) {
-                            String imageUrl = document.getString("image1");
-                            if (imageUrl != null) {
-                                imageUrls.add(imageUrl);
-                                updateViewPager();
-                            }
-                        }
-                    } else {
-                        Log.w(TAG, "Error getting document for user: " + userId, task.getException());
-                    }
-                });
+    private void checkScrollCount() {
+        if (verticalScrollCount >= SCROLL_THRESHOLD && !isPremiumUser()) {
+            openPaymentGateway();
+        }
     }
 
-    private void updateViewPager() {
-        if (adapter == null) {
-            adapter = new ImagePagerAdapter(getContext(), imageUrls);
-            viewPager2.setAdapter(adapter);
-        } else {
-            adapter.notifyDataSetChanged();
+    private boolean isPremiumUser() {
+        // Replace with your actual logic to check if the user is a premium customer
+        return false;
+    }
+
+    private void openPaymentGateway() {
+
+        startPayment();
+        // Reset the scroll count if needed
+        verticalScrollCount = 0;
+    }
+
+    public void startPayment() {
+        Checkout checkout = new Checkout();
+        checkout.setKeyID("rzp_test_AlruDQh4nj5yr9"); // Remove the angle brackets
+
+        checkout.setImage(R.drawable.ic_emoji); // Ensure this drawable exists
+
+        final StarFragment activity = this;
+
+        try {
+            JSONObject options = new JSONObject();
+
+            options.put("name", "Merchant Name");
+            options.put("description", "Reference No. #123456");
+            options.put("order_id", "order_DBJOWzybf0sJbb");
+            options.put("image", "http://example.com/image/rzp.jpg");
+            options.put("theme.color", "#3399cc");
+            options.put("currency", "INR");
+            options.put("amount", "50000"); // Pass amount in currency subunits
+            options.put("prefill.email", "gaurav.kumar@example.com");
+            options.put("prefill.contact", "9988776655");
+
+            JSONObject retryObj = new JSONObject();
+            retryObj.put("enabled", true);
+            retryObj.put("max_count", 4);
+            options.put("retry", retryObj);
+
+            checkout.open(getActivity(), options);
+        } catch (Exception e) {
+            Log.e("TAG", "Error in starting Razorpay Checkout", e);
         }
     }
 
@@ -175,4 +186,13 @@ public class StarFragment extends Fragment {
                 });
     }
 
+    @Override
+    public void onPaymentSuccess(String s) {
+        Log.d("TAG", "onPaymentSuccess: " + s);
+    }
+
+    @Override
+    public void onPaymentError(int i, String s) {
+        Log.d("TAG", "onPaymentError: ");
+    }
 }

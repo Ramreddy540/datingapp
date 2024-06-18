@@ -12,8 +12,20 @@
         <item name="colorOnSecondary">#212121</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+
+        <item name="bottomSheetDialogTheme">@style/BottomSheetDialog</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheet</item>
+    </style>
+
+    <style name="BottomSheet" parent="Widget.Design.BottomSheet.Modal">
+        <!-- Customize BottomSheet here if needed -->
+    </style>
+
+
     <style name="Theme.OTPVerification.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

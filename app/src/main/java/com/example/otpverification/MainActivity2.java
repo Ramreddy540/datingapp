@@ -125,15 +125,16 @@ public class MainActivity2 extends AppCompatActivity {
 //        user.put("image2", uri.get(1));
 //        user.put("image3", uri.get(2));
 
-        db.collection("users").document(phoneNum).collection("steps")
-                .document("step1").set(user)
+        db.collection("users").document(phoneNum)
+                .set(user)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
 
                     @Override
                     public void onSuccess(Void unused) {
 
                     }
-                }).addOnFailureListener(new OnFailureListener() {
+                })
+                .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
 
@@ -161,11 +162,10 @@ public class MainActivity2 extends AppCompatActivity {
         }
     }
 
-
-
     // Method to move to the next activity
     private void moveToNextActivity() {
         Intent intent = new Intent(MainActivity2.this, S1.class);
         startActivity(intent);
     }
+
 }

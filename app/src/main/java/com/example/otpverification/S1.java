@@ -8,15 +8,18 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -70,16 +73,21 @@ public class S1 extends AppCompatActivity {
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
                 dialog.show();
             }
         });
-        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+
     }
 
     private void onCreateDialog() {
         View view = LayoutInflater.from(getApplicationContext()).inflate(
                 R.layout.s1bottomsheet_dialog, null,false);
+
+        // Set the background to be transparent to enable the dim effect
+        if (view.getParent() != null) {
+            ((ViewGroup) view.getParent()).setBackgroundResource(android.R.color.transparent);
+        }
 
         view.findViewById(R.id.buttonCancel).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,6 +109,8 @@ public class S1 extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
+
+
         dialog.setContentView(view);
     }
 
@@ -148,7 +158,7 @@ public class S1 extends AppCompatActivity {
         Number = numb.replace("+91", "");
 
         // Add data to Firestore
-        db.collection(Number).document("step2")
+        db.collection("users").document(Number)
                 .set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
@@ -203,4 +213,6 @@ public class S1 extends AppCompatActivity {
         intent.putExtra("mobile",Number);
         startActivity(intent);
     }
+
+
 }
