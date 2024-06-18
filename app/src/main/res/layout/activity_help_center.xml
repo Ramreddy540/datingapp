@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/helpid"
     android:orientation="horizontal"
     android:layout_gravity="center"
     tools:context=".HelpCenter">
@@ -32,9 +33,10 @@
 
             <TextView
                 android:id="@+id/helpCenter"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Help Center"
+                android:layout_marginStart="70dp"
                 android:textColor="@color/black"
                 android:textSize="32dp"
                 android:gravity="center"

@@ -71,7 +71,12 @@ public class HelpCenter extends AppCompatActivity {
                 View inflatedView = LayoutInflater.from(HelpCenter.this).inflate(R.layout.safetytips, null);
 
                 // Add any additional logic here, such as modifying views within the inflated layout
+                inflatedView.findViewById(R.id.aro1).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
+                    }
+                });
                 // Display the inflated layout
                 setContentView(inflatedView);
             }
