@@ -1,13 +1,6 @@
 package com.example.otpverification.Fragments;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +8,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.otpverification.Adapter.MessageAdapter;
 import com.example.otpverification.Models.Message;
@@ -26,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class User_Chat_Fragment extends Fragment {
@@ -42,6 +42,10 @@ public class User_Chat_Fragment extends Fragment {
     private String userId = "user2";
     private String receiverId = "user1";
 
+    // List of disallowed words
+    private static final List<String> disallowedWords = Arrays.asList(
+            "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "zero"
+    );
 
     public User_Chat_Fragment() {
         // Required empty public constructor
@@ -77,17 +81,37 @@ public class User_Chat_Fragment extends Fragment {
         });
 
         receiveMessages();
-
     }
 
     private void sendMessage() {
         String messageText = messageEditText.getText().toString();
-        if (!TextUtils.isEmpty(messageText)) {
+        if (!TextUtils.isEmpty(messageText) && !containsDisallowedContent(messageText)) {
             String messageId = chatReference.push().getKey();
             Message message = new Message(userId, receiverId, messageText, System.currentTimeMillis());
             chatReference.child(messageId).setValue(message);
             messageEditText.setText("");
+        } else {
+            Toast.makeText(getActivity(), "Message contains numbers or disallowed words and cannot be sent", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private boolean containsDisallowedContent(String message) {
+        // Check for digits
+        for (int i = 0; i < message.length(); i++) {
+            if (Character.isDigit(message.charAt(i))) {
+                return true;
+            }
+        }
+
+        // Check for disallowed words
+        String[] words = message.toLowerCase().split("\\s+");
+        for (String word : words) {
+            if (disallowedWords.contains(word)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void receiveMessages() {
@@ -109,5 +133,4 @@ public class User_Chat_Fragment extends Fragment {
             }
         });
     }
-
 }

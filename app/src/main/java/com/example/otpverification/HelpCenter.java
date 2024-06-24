@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class HelpCenter extends AppCompatActivity {
 
@@ -143,6 +144,9 @@ public class HelpCenter extends AppCompatActivity {
         view.findViewById(R.id.btnConfirm).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent i=new Intent(getApplicationContext(),OTPSendActivity.class);
+                startActivity(i);
                 Toast.makeText(HelpCenter.this, "Logout Succesfully", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
