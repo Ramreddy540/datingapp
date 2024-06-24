@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -115,15 +116,14 @@ public class S2 extends AppCompatActivity {
         String number = getIntent().getStringExtra("mobile");
 
         db.collection("users").document(number)
-                .set(data) // Set data for the document
+                .set(data, SetOptions.merge()) // Set data for the document
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(S2.this, "Data saved", Toast.LENGTH_SHORT).show();
                             moveToNextActivity(); // Move to the next activity after data is saved
                         } else {
-                            Toast.makeText(S2.this, "Failed to save data to Firestore: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(S2.this, "Failed to save data", Toast.LENGTH_SHORT).show();
                             Log.e("Firestore", "Error saving data to Firestore", task.getException());
                         }
                     }

@@ -28,6 +28,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -159,7 +160,7 @@ public class S1 extends AppCompatActivity {
 
         // Add data to Firestore
         db.collection("users").document(Number)
-                .set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                .set(user, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
                         Log.d("TAG", "onSuccess: Step 2 successfull");

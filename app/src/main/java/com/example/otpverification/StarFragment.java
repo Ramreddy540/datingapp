@@ -10,16 +10,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.otpverification.Adapter.ImagePagerAdapter;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -50,12 +43,6 @@ public class StarFragment extends Fragment implements PaymentResultListener  {
 
     private String CurrentUserNumber;
 
-    public StarFragment() {
-        // Required empty public constructor
-        db = FirebaseFirestore.getInstance();
-        imageUrls = new ArrayList<>();
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -67,27 +54,32 @@ public class StarFragment extends Fragment implements PaymentResultListener  {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        db = FirebaseFirestore.getInstance();
+        imageUrls = new ArrayList<>();
+
         String url1= "https://firebasestorage.googleapis.com/v0/b/otpverification-19c3b.appspot.com/o/images%2F1718286391754.jpg?alt=media&token=1f7a4d8b-bf8d-45bd-92c2-b45cd29f1e3d";
         String url2= "https://firebasestorage.googleapis.com/v0/b/otpverification-19c3b.appspot.com/o/images%2F1718289845140.jpg?alt=media&token=5fdbcab8-d0ba-478a-b2cc-680f5e63d992";
         String numb = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber();
-        CurrentUserNumber = numb.replace("+91", "");
 
-        viewPager2 = view.findViewById(R.id.viewPager2);
+        if(numb != null){
 
-        imageUrls.add(url1);
-        imageUrls.add(url2);
-        imageUrls.add(url1);
+            CurrentUserNumber = numb.replace("+91", "");
 
-        adapter = new ImagePagerAdapter(getContext(), imageUrls);
-        viewPager2.setAdapter(adapter);
+            viewPager2 = view.findViewById(R.id.viewPager2);
 
-        viewPager2.setOrientation(ViewPager2.ORIENTATION_VERTICAL);
+            imageUrls.add(url1);
+            imageUrls.add(url2);
+            imageUrls.add(url1);
 
-        setupScrollListener();
+            adapter = new ImagePagerAdapter(getContext(), imageUrls);
+            viewPager2.setAdapter(adapter);
 
-//        fetchData();
+            viewPager2.setOrientation(ViewPager2.ORIENTATION_VERTICAL);
 
-        //fetchAllUserCollections();
+            setupScrollListener();
+
+        }
+        else{}
 
     }
 
