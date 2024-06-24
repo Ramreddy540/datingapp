@@ -62,6 +62,7 @@ public class User_Chat_Fragment extends Fragment {
         messageEditText = view.findViewById(R.id.messageEditText);
         sendButton = view.findViewById(R.id.sendButton);
 
+
         messageList = new ArrayList<>();
         messageAdapter = new MessageAdapter(messageList, userId);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
