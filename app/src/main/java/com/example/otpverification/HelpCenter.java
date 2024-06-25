@@ -149,6 +149,7 @@ public class HelpCenter extends AppCompatActivity {
                 startActivity(i);
                 Toast.makeText(HelpCenter.this, "Logout Succesfully", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
+                finish();
             }
         });
 

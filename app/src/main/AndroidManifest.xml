@@ -64,9 +64,6 @@
         <activity
             android:name=".S1"
             android:exported="true" >
-
-
-
         </activity>
         <activity
             android:name=".HelpCenter"

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,6 +22,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.concurrent.TimeUnit;
 
@@ -30,11 +33,18 @@ public class OTPReceivedActivity extends AppCompatActivity {
 
     private String verificatonID;
 
+    private FirebaseFirestore db;
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otpreceived);
-       TextView textMobile=findViewById(R.id.textmoblie);
+
+        mAuth = FirebaseAuth.getInstance();
+        db= FirebaseFirestore.getInstance();
+
+        TextView textMobile=findViewById(R.id.textmoblie);
         textMobile.setText(String.format("+91-%s",getIntent().getStringExtra("mobile")));
         otpEditText1=findViewById(R.id.inputcode1);
         otpEditText2=findViewById(R.id.inputcode2);
@@ -73,7 +83,11 @@ public class OTPReceivedActivity extends AppCompatActivity {
            if (verificatonID != null) {
            progressBar.setVisibility(View.VISIBLE);
            buttonVerify.setVisibility(View.INVISIBLE);
-               PhoneAuthCredential phoneAuthCredential= PhoneAuthProvider.getCredential(verificatonID,code);
+
+           PhoneAuthCredential phoneAuthCredential= PhoneAuthProvider
+                                                    .getCredential(verificatonID,code);
+
+
                FirebaseAuth.getInstance().signInWithCredential(phoneAuthCredential)
                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                            @Override
@@ -81,11 +95,11 @@ public class OTPReceivedActivity extends AppCompatActivity {
                               progressBar.setVisibility(View.GONE);
                               buttonVerify.setVisibility(View.VISIBLE);
                               if (task.isSuccessful()){
-                                  Intent intent=new Intent(getApplicationContext(),MainActivity2.class);
-                                  intent.putExtra("mobile",getIntent().getStringExtra("mobile"));
-                                  intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                  startActivity(intent);
-                              }else {
+
+                              checkUserInFirestore();
+
+                              }
+                              else {
                                   Toast.makeText(OTPReceivedActivity.this, "The verification code entered was invalid", Toast.LENGTH_SHORT).show();
                               }
                            }
@@ -94,36 +108,50 @@ public class OTPReceivedActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void checkUserInFirestore() {
+        String userId = String.format("%s",mAuth.getCurrentUser().getPhoneNumber().substring("+91".length()));
+        Log.d("TAG", "Phone:"+userId);
+
+        db.collection("users").document(userId).get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
 
 
-    findViewById(R.id.textResendOTP).setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                    "+91" +getIntent().getStringExtra("moblie"),
-                    60,
-                    TimeUnit.SECONDS,
-                    OTPReceivedActivity.this,
-                    new PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
-                        @Override
-                        public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+                            String name = document.getString("firstName");
+                            String dob = document.getString("dob");
 
-                        }
-                        @Override
-                        public void onVerificationFailed(@NonNull FirebaseException e) {
-                            Toast.makeText(OTPReceivedActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                        @Override
-                        public void onCodeSent(@NonNull String newVerificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-                          verificatonID =newVerificationId;
-                            Toast.makeText(OTPReceivedActivity.this, "OTP Sent", Toast.LENGTH_SHORT).show();
+                            if (name != null && !name.isEmpty() && dob != null && !dob.isEmpty()) {
+                                // User exists and has required data, navigate to dashboard
+                                Intent intent = new Intent(OTPReceivedActivity.this, MainActivity.class);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                // User exists but does not have required data, navigate to registration
+                                Intent intent = new Intent(OTPReceivedActivity.this, MainActivity2.class);
+                                intent.putExtra("mobile",getIntent().getStringExtra("mobile"));
+                                startActivity(intent);
+                                finish();
+                            }
+                        } else {
+                            // User does not exist, create a new user entry
+
+                            Intent intent=new Intent(getApplicationContext(),MainActivity2.class);
+                            intent.putExtra("mobile",getIntent().getStringExtra("mobile"));
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                            finish();
                         }
                     }
-            );
-
-        }
-    });
+                    else {
+                        Toast.makeText(OTPReceivedActivity.this, "Error checking user", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
+
     private void setupOtpEditTexts() {
         otpEditText1.addTextChangedListener(new OtpTextWatcher(otpEditText1, otpEditText2));
         otpEditText2.addTextChangedListener(new OtpTextWatcher(otpEditText2, otpEditText3));
@@ -163,4 +191,5 @@ public class OTPReceivedActivity extends AppCompatActivity {
         public void afterTextChanged(Editable s) {
         }
     }
+
 }
