@@ -7,13 +7,20 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.firestore.WriteBatch;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -42,6 +49,10 @@ public class DeleteActivity extends AppCompatActivity {
             deleteButton.setEnabled(checkedId != -1);
         });
 
+
+
+
+
         deleteButton.setOnClickListener(v -> {
             if (isRadioButtonSelected()) {
                 deleteUser();
@@ -66,21 +77,47 @@ public class DeleteActivity extends AppCompatActivity {
             if (userPhoneNumber != null) {
                 logDeletedUser(userPhoneNumber, getSelectedReason(), getFeedback());
             }
+
             user.delete()
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             Log.d("DeleteActivity", "User account deleted.");
-                            Toast.makeText(DeleteActivity.this, "Account deleted successfully.", Toast.LENGTH_SHORT).show();
-                            navigateToOTPSendActivity();
+
                         } else {
                             Log.e("DeleteActivity", "Failed to delete user account.", task.getException());
-                            Toast.makeText(DeleteActivity.this, "Failed to delete account.", Toast.LENGTH_SHORT).show();
+
                         }
                     });
+
+            String prefix = "+91";
+            String newphonenumber = String.format("%s",user.getPhoneNumber().substring(prefix.length()));
+
+
+            db.collection("users").document(newphonenumber).delete()
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(DeleteActivity.this, "User Data Deleted Successfully", Toast.LENGTH_SHORT).show();
+
+                            Intent i=new Intent(DeleteActivity.this,OTPSendActivity.class);
+                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(i);
+                            finish();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(DeleteActivity.this, "Error Deleting User Data", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+
+
         } else {
             Toast.makeText(DeleteActivity.this, "No user is signed in.", Toast.LENGTH_SHORT).show();
         }
     }
+
 
     private String getFeedback() {
         return editTextFeedback.getText().toString();
@@ -105,5 +142,10 @@ public class DeleteActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
+    }
+
+    private interface FirestoreDeleteCallback {
+        void onSuccess();
+        void onFailure(Exception e);
     }
 }

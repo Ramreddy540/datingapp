@@ -19,7 +19,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -35,6 +34,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+
 
 public class S1 extends AppCompatActivity {
     private TextInputEditText editTextFirstName, editTextLastName, editTextEmail, editTextDOB;
@@ -214,6 +214,5 @@ public class S1 extends AppCompatActivity {
         intent.putExtra("mobile",Number);
         startActivity(intent);
     }
-
 
 }
