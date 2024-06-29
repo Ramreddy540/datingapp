@@ -34,7 +34,7 @@ public class StarFragment extends Fragment implements PaymentResultListener  {
     private List<String> imageUrls;
     private ImagePagerAdapter adapter;
     private FirebaseFirestore db;
-    private static final int SCROLL_THRESHOLD = 2; // Number of scrolls required
+    private static final int SCROLL_THRESHOLD = 2;
     private int verticalScrollCount = 0;
     private int previousPosition = 0;
 

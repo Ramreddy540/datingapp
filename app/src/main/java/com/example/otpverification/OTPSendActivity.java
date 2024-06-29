@@ -71,7 +71,7 @@ public class OTPSendActivity extends AppCompatActivity {
 
             @Override
             public void onCodeSent(@NonNull String verificationId,
-                                   @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                                   @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken){
 
                 my_VerificationId = verificationId;
                 mResendToken = forceResendingToken;

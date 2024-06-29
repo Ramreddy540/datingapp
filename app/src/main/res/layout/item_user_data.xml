@@ -6,6 +6,53 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="6dp">
 
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Honey"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:textColor="#000"
+        android:id="@+id/name1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="24"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:id="@+id/name2"
+        android:textColor="#000"
+        app:layout_constraintStart_toEndOf="@id/name1"
+        app:layout_constraintTop_toTopOf="@id/name1"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/name1"/>
+
+    <ImageView
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:id="@+id/name3"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/verifyy"
+        android:layout_marginStart="5dp"
+        app:layout_constraintStart_toStartOf="@id/name1"
+        app:layout_constraintTop_toBottomOf="@id/name1"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="Verified"
+        android:id="@+id/name4"
+        android:textSize="13sp"
+        android:fontFamily="@font/inter_medium"
+        android:textColor="#000"
+        app:layout_constraintStart_toEndOf="@id/name3"
+        app:layout_constraintTop_toTopOf="@id/name3"
+        app:layout_constraintBottom_toBottomOf="@id/name3"
+        android:layout_marginStart="5dp"/>
+
     <ImageView
         android:id="@+id/imageViewPager"
         android:layout_width="match_parent"
