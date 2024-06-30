@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,12 +16,12 @@ import java.util.List;
 
 public class YourLikeAdapter extends RecyclerView.Adapter<YourLikeAdapter.YourLikeViewHolder> {
 
-    private List<YourLikeItem> itemList;
+    private List<YourLikeItem> likedUsers;
     private Context context;
 
-    public YourLikeAdapter(Context context, List<YourLikeItem> itemList) {
+    public YourLikeAdapter(Context context, List<YourLikeItem> likedUsers) {
         this.context = context;
-        this.itemList = itemList;
+        this.likedUsers = likedUsers;
     }
 
     @NonNull
@@ -31,14 +33,17 @@ public class YourLikeAdapter extends RecyclerView.Adapter<YourLikeAdapter.YourLi
 
     @Override
     public void onBindViewHolder(@NonNull YourLikeViewHolder holder, int position) {
-        YourLikeItem item = itemList.get(position);
+        YourLikeItem item = likedUsers.get(position);
         holder.textView.setText(item.getText());
-        holder.imageView.setImageResource(item.getImageResourceId());
+        Glide.with(context).load(item.getImageResourceId()).into(holder.imageView);
+
+
     }
 
     @Override
     public int getItemCount() {
-        return itemList.size();
+
+        return likedUsers.size();
     }
 
     public static class YourLikeViewHolder extends RecyclerView.ViewHolder {

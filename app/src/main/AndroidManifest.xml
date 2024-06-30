@@ -51,9 +51,7 @@
         <activity
             android:name=".InstagramActivity"
             android:exported="false" />
-        <activity
-            android:name=".YourLikeActivity"
-            android:exported="false" />
+
         <activity
             android:name=".TrainingActivity"
             android:exported="false" />

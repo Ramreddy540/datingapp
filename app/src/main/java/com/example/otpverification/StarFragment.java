@@ -1,38 +1,44 @@
 package com.example.otpverification;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
-
 import com.example.otpverification.Adapter.ImagePagerAdapter;
 import com.example.otpverification.Models.Users;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 import com.razorpay.PaymentResultListener;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class StarFragment extends Fragment implements PaymentResultListener {
+public class StarFragment extends Fragment implements PaymentResultListener, OnImageClickListener
+{
 
     private ViewPager2 viewPager2;
     private ImagePagerAdapter adapter;
@@ -43,16 +49,22 @@ public class StarFragment extends Fragment implements PaymentResultListener {
     private UserAdapter userAdapter;
     private List<User> userList;
     private String CurrentUserNumber;
+    private List<Users> viewPagerItems;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_star, container, false);
+
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        getActivity().getWindow().setStatusBarColor(ContextCompat.getColor(getContext(),
+                R.color.pink));
 
         db = FirebaseFirestore.getInstance();
 
@@ -62,18 +74,38 @@ public class StarFragment extends Fragment implements PaymentResultListener {
             CurrentUserNumber = numb.replace("+91", "");
 
             viewPager2 = view.findViewById(R.id.viewPager2);
+            viewPagerItems = new ArrayList<>();
+            adapter = new ImagePagerAdapter(getContext(), viewPagerItems, this);
+            viewPager2.setAdapter(adapter);
 
-            db.collection("users")
-                    .get()
-                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+            viewPager2.setOrientation(ViewPager2.ORIENTATION_VERTICAL);
 
-                            if (task.isSuccessful()) {
+            // setupScrollListener();
 
-                                List<Users> viewPagerItems = new ArrayList<>();
+            fetchAllUsers();
 
-                                for (DocumentSnapshot document : task.getResult()) {
+        }
+        else {
+            // Handle the case where the phone number is null
+            Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    private void fetchAllUsers() {
+
+        db.collection("users")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                        if (task.isSuccessful()) {
+
+                            for (DocumentSnapshot document : task.getResult()) {
+
+                                String userId = document.getId();
+                                if (!userId.equals(CurrentUserNumber)) {
 
                                     String firstName = document.getString("firstName");
                                     String dob = document.getString("dob");
@@ -94,29 +126,21 @@ public class StarFragment extends Fragment implements PaymentResultListener {
 
                                 }
 
-                                adapter = new ImagePagerAdapter(getContext(), viewPagerItems);
-                                viewPager2.setAdapter(adapter);
-
-                                viewPager2.setOrientation(ViewPager2.ORIENTATION_VERTICAL);
-
-                               // setupScrollListener();
-
                             }
 
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
+                            adapter.notifyDataSetChanged();
 
                         }
-                    });
 
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
 
-        } else {
-            // Handle the case where the phone number is null
-            Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
-        }
+                    }
+                });
+
     }
 
     public int calculateAge(String dobString) {
@@ -213,6 +237,40 @@ public class StarFragment extends Fragment implements PaymentResultListener {
     @Override
     public void onPaymentError(int i, String s) {
         Log.d("TAG", "onPaymentError:");
+    }
+
+    @Override
+    public void onImageClick(String likedUserName, String likedUserImage, String likedUserPhone) {
+
+        storeLike(CurrentUserNumber, likedUserName, likedUserImage);
+
+    }
+
+    private void storeLike(String likerId, String likedId, String likedUserImage) {
+
+        Map<String, Object> likeData = new HashMap<>();
+        likeData.put("likedName", likedId);
+        likeData.put("likedImage", likedUserImage);
+        likeData.put("timestamp", FieldValue.serverTimestamp());
+
+        db.collection("likes")
+                .document(CurrentUserNumber)
+                .set(likeData, SetOptions.merge())
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                    Toast.makeText(getContext(), "Profile Liked", Toast.LENGTH_SHORT).show();
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("Firestore", "Error adding like", e);
+                    }
+                });
+
     }
 
 }

@@ -1,9 +1,16 @@
 package com.example.otpverification;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,12 +20,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class HeartFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private YourLikeAdapter yourLikeAdapter;
     private List<YourLikeItem> itemList;
+    private FirebaseFirestore db;
+    private FirebaseAuth auth;
+    private String number;
 
     @Nullable
     @Override
@@ -31,27 +42,43 @@ public class HeartFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        recyclerView = view.findViewById(R.id.your_like_recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        db = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
+
+        String user_num = auth.getCurrentUser().getPhoneNumber();
+        number = user_num.replace("+91", "");
 
         itemList = new ArrayList<>();
-        // Add items to the list (example)
-        itemList.add(new YourLikeItem(R.drawable.jack, "Gandhi"));
-        itemList.add(new YourLikeItem(R.drawable.kp, "Madhan"));
-        itemList.add(new YourLikeItem(R.drawable.jack, "Jr PK"));
-        itemList.add(new YourLikeItem(R.drawable.kp, "Nagi"));
-        itemList.add(new YourLikeItem(R.drawable.jack, "Naresh"));
-        itemList.add(new YourLikeItem(R.drawable.kp, "Akhil"));
-        itemList.add(new YourLikeItem(R.drawable.jack, "vishnu"));
-        itemList.add(new YourLikeItem(R.drawable.jack, "Gandhi"));
-        itemList.add(new YourLikeItem(R.drawable.kp, "Madhan"));
-        itemList.add(new YourLikeItem(R.drawable.jack, "Jr PK"));
-        itemList.add(new YourLikeItem(R.drawable.kp, "Nagi"));
-        itemList.add(new YourLikeItem(R.drawable.jack, "Naresh"));
-        itemList.add(new YourLikeItem(R.drawable.kp, "Akhil"));
-        itemList.add(new YourLikeItem(R.drawable.jack, "vishnu"));
 
+        fetchAllLikes();
+
+        recyclerView = view.findViewById(R.id.your_like_recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         yourLikeAdapter = new YourLikeAdapter(getContext(), itemList);
         recyclerView.setAdapter(yourLikeAdapter);
+    }
+
+    private void fetchAllLikes() {
+
+        // Fetch the user details from the 'users' collection
+        db.collection("likes").document(number).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot userDocument = task.getResult();
+                    if (userDocument.exists()) {
+                        String name = userDocument.getString("likedName");
+                        String image = userDocument.getString("likedImage");
+                        itemList.add(new YourLikeItem(image, name));
+
+                    }
+
+                    yourLikeAdapter.notifyDataSetChanged();
+
+                } else {
+                    Log.d("Firestore", "Error fetching user details: ", task.getException());
+                }
+            }
+        });
     }
 }

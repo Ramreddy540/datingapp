@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -8,9 +9,8 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/like_item_image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/cam150"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginEnd="8dp"
         android:contentDescription="@string/item_image_desc"
         android:scaleType="centerCrop" />
@@ -22,9 +22,10 @@
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
         android:textSize="24sp"
-        android:text="Demo"
+        android:text=""
         android:layout_marginStart="10dp"
         android:fontFamily="@font/inter_semibold"
         android:textColor="@android:color/black"
         android:gravity="center_vertical" />
+
 </LinearLayout>

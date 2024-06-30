@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.otpverification.Models.Users;
+import com.example.otpverification.OnImageClickListener;
 import com.example.otpverification.R;
 
 import java.util.List;
@@ -22,10 +23,12 @@ import androidx.viewpager.widget.PagerAdapter;
 
     private Context context;
     private List<Users> viewPagerItems;
+    private OnImageClickListener onImageClickListener;
 
-    public ImagePagerAdapter(Context context, List<Users> viewPagerItems) {
+    public ImagePagerAdapter(Context context, List<Users> viewPagerItems, OnImageClickListener onImageClickListener) {
         this.context = context;
         this.viewPagerItems = viewPagerItems;
+        this.onImageClickListener = onImageClickListener;
     }
 
     @NonNull
@@ -64,14 +67,17 @@ import androidx.viewpager.widget.PagerAdapter;
         return viewPagerItems.size();
     }
 
-    static class ImageViewHolder extends RecyclerView.ViewHolder {
+    public class ImageViewHolder extends RecyclerView.ViewHolder {
 
         TextView firstName, dob, height, religion, status, language, smoke, community, drinking;
-        ImageView imageView;
+        ImageView imageView, like, dislike;
 
-        ImageViewHolder(View itemView) {
+        public ImageViewHolder(@NonNull View itemView) {
+
             super(itemView);
             imageView = itemView.findViewById(R.id.imageViewPager);
+            like = itemView.findViewById(R.id.heart_like);
+            dislike = itemView.findViewById(R.id.i1);
             firstName = itemView.findViewById(R.id.name1);
             dob = itemView.findViewById(R.id.name2);
             height = itemView.findViewById(R.id.heightTextView);
@@ -82,7 +88,24 @@ import androidx.viewpager.widget.PagerAdapter;
             community = itemView.findViewById(R.id.communityTextView);
             drinking = itemView.findViewById(R.id.drinkingTextView);
 
+            like.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getBindingAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION && onImageClickListener != null) {
+
+                        Users likedItem = viewPagerItems.get(position);
+
+                        String likedUserName = viewPagerItems.get(position).getFirstName();
+                        String likedUserImage = likedItem.getImageUrl();
+                        String likedUserPhone = viewPagerItems.get(position).getDob();
+                        onImageClickListener.onImageClick(likedUserName,likedUserImage,likedUserPhone);
+                    }
+                }
+            });
+
         }
+
     }
 
 }

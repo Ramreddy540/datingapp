@@ -136,7 +136,8 @@ public class OTPReceivedActivity extends AppCompatActivity {
                                 startActivity(intent);
                                 finish();
                             }
-                        } else {
+                        }
+                        else {
                             // User does not exist, create a new user entry
 
                             Intent intent=new Intent(getApplicationContext(),MainActivity2.class);

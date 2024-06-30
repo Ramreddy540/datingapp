@@ -17,9 +17,15 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -29,6 +35,7 @@ public class ProfileFragment extends Fragment {
     private TextView text1;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
+    private String phoneNum;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -42,10 +49,9 @@ public class ProfileFragment extends Fragment {
         mAuth=FirebaseAuth.getInstance();
 
 
-        String userId = String.format("%s",mAuth.getCurrentUser().getPhoneNumber().substring("+91".length()));
-        Log.d("TAG", "Phone:"+userId);
+        phoneNum = String.format("%s",mAuth.getCurrentUser().getPhoneNumber().substring("+91".length()));
 
-        db.collection("users").document(userId).get()
+        db.collection("users").document(phoneNum).get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
@@ -138,6 +144,28 @@ public class ProfileFragment extends Fragment {
         if (resultCode == Activity.RESULT_OK && requestCode == 0) {
             Uri uri = data.getData();
             ivPhoto.setImageURI(uri);
+
+            Map<String, Object> user = new HashMap<>();
+            user.put("image1", uri);
+
+            db.collection("users").document(phoneNum)
+                    .set(user, SetOptions.merge())
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+
+                        @Override
+                        public void onSuccess(Void unused) {
+
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                            Log.d("TAG", "onFailure: "+e.getLocalizedMessage());
+
+                        }
+                    });
+
         }
     }
 }

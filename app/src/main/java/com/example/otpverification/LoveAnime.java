@@ -6,15 +6,20 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.animation.Animation;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import com.airbnb.lottie.LottieAnimationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoveAnime extends AppCompatActivity {
 
     TextView love;
     LottieAnimationView lottie;
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,29 +32,51 @@ public class LoveAnime extends AppCompatActivity {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser user= auth.getCurrentUser();
-//        Log.d("TAG", "onCreate: user "+ user.getPhoneNumber());
+
+        db= FirebaseFirestore.getInstance();
+
+        String number = user.getPhoneNumber().replace("+91", "");
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                db.collection("users").document(number).get()
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                if (document.exists()) {
 
 
-        if (user != null){
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Intent i = new Intent(LoveAnime.this, MainActivity.class);
-                    startActivity(i);
-                    finish();
-                }
-            }, 3000);
-        }
-        else {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Intent i = new Intent(LoveAnime.this, AS.class);
-                    startActivity(i);
-                    finish();
-                }
-            }, 3000);
-        }
+                                    String name = document.getString("firstName");
+                                    String dob = document.getString("dob");
+
+                                    if (name != null && !name.isEmpty() && dob != null && !dob.isEmpty()) {
+                                        // User exists and has required data, navigate to dashboard
+                                        Intent intent = new Intent(LoveAnime.this, MainActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    } else {
+                                        // User exists but does not have required data, navigate to registration
+                                        Intent intent = new Intent(LoveAnime.this, MainActivity2.class);
+                                        intent.putExtra("mobile", getIntent().getStringExtra("mobile"));
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                } else {
+                                    // User does not exist, create a new user entry
+
+                                    Intent intent = new Intent(getApplicationContext(), AS.class);
+                                    intent.putExtra("mobile", getIntent().getStringExtra("mobile"));
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            } else {
+                                Toast.makeText(LoveAnime.this, "Error checking user", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            }
+        }, 3000);
 
     }
 }

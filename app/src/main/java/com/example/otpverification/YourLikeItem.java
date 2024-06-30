@@ -1,18 +1,24 @@
 package com.example.otpverification;
+
+
 public class YourLikeItem {
-    private int imageResourceId;
+
+    private String imageResourceId;
     private String text;
 
-    public YourLikeItem(int imageResourceId, String text) {
+    public YourLikeItem(String imageResourceId, String text) {
         this.imageResourceId = imageResourceId;
         this.text = text;
     }
 
-    public int getImageResourceId() {
+    public String getImageResourceId() {
+
         return imageResourceId;
     }
 
     public String getText() {
+
         return text;
     }
+
 }
