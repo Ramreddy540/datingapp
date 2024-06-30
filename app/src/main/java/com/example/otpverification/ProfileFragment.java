@@ -51,7 +51,6 @@ public class ProfileFragment extends Fragment {
                         DocumentSnapshot document = task.getResult();
                         if (document.exists()) {
 
-
                             String Fname = document.getString("firstName");
                             String Lname = document.getString("lastName");
                             String image = document.getString("image1");
@@ -60,14 +59,10 @@ public class ProfileFragment extends Fragment {
 
                             Glide.with(getActivity().getApplicationContext()).load(image).into(ivPhoto);
 
-
-
                         }
                     }});
 
-
-
-                            ImageView vector = rootView.findViewById(R.id.vector);
+        ImageView vector = rootView.findViewById(R.id.vector);
         vector.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

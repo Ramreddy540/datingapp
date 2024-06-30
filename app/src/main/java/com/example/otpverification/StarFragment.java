@@ -1,5 +1,3 @@
-
-
 package com.example.otpverification;
 
 import android.content.Intent;
@@ -9,24 +7,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.otpverification.Adapter.ImagePagerAdapter;
+import com.example.otpverification.Models.Users;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.razorpay.PaymentResultListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class StarFragment extends Fragment implements PaymentResultListener {
 
     private ViewPager2 viewPager2;
-    private List<String> imageUrls;
     private ImagePagerAdapter adapter;
     private FirebaseFirestore db;
     private static final int SCROLL_THRESHOLD = 2;
@@ -47,10 +55,7 @@ public class StarFragment extends Fragment implements PaymentResultListener {
         super.onViewCreated(view, savedInstanceState);
 
         db = FirebaseFirestore.getInstance();
-        imageUrls = new ArrayList<>();
 
-        String url1 = "https://firebasestorage.googleapis.com/v0/b/otpverification-19c3b.appspot.com/o/images%2F1718286391754.jpg?alt=media&token=1f7a4d8b-bf8d-45bd-92c2-b45cd29f1e3d";
-        String url2 = "https://firebasestorage.googleapis.com/v0/b/otpverification-19c3b.appspot.com/o/images%2F1718289845140.jpg?alt=media&token=5fdbcab8-d0ba-478a-b2cc-680f5e63d992";
         String numb = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber();
 
         if (numb != null) {
@@ -58,20 +63,83 @@ public class StarFragment extends Fragment implements PaymentResultListener {
 
             viewPager2 = view.findViewById(R.id.viewPager2);
 
-            imageUrls.add(url1);
-            imageUrls.add(url2);
-            imageUrls.add(url1);
+            db.collection("users")
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
-            adapter = new ImagePagerAdapter(getContext(), imageUrls);
-            viewPager2.setAdapter(adapter);
+                            if (task.isSuccessful()) {
 
-            viewPager2.setOrientation(ViewPager2.ORIENTATION_VERTICAL);
+                                List<Users> viewPagerItems = new ArrayList<>();
 
-            setupScrollListener();
+                                for (DocumentSnapshot document : task.getResult()) {
+
+                                    String firstName = document.getString("firstName");
+                                    String dob = document.getString("dob");
+                                    String height = document.getString("Height");
+                                    String religion = document.getString("Religion");
+                                    String status = document.getString("Status");
+                                    String language = document.getString("Language");
+                                    String smoke = document.getString("Smoke");
+                                    String community = document.getString("Community");
+                                    String drinking = document.getString("Drinking");
+                                    String imageResId = document.getString("image1");
+
+                                    // Calculate age from DOB
+                                    int age = calculateAge(dob);
+
+                                    viewPagerItems.add(new Users(firstName, String.valueOf(age), height, religion,
+                                            status, language, smoke, community, drinking, imageResId));
+
+                                }
+
+                                adapter = new ImagePagerAdapter(getContext(), viewPagerItems);
+                                viewPager2.setAdapter(adapter);
+
+                                viewPager2.setOrientation(ViewPager2.ORIENTATION_VERTICAL);
+
+                               // setupScrollListener();
+
+                            }
+
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                        }
+                    });
+
+
         } else {
             // Handle the case where the phone number is null
-            Toast.makeText(getContext(), "Phone number is null", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public int calculateAge(String dobString) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Date dob = sdf.parse(dobString);
+            Calendar dobCalendar = Calendar.getInstance();
+            dobCalendar.setTime(dob);
+
+            Calendar today = Calendar.getInstance();
+
+            int age = today.get(Calendar.YEAR) - dobCalendar.get(Calendar.YEAR);
+
+            if (today.get(Calendar.DAY_OF_YEAR) < dobCalendar.get(Calendar.DAY_OF_YEAR)) {
+                age--;
+            }
+
+            return age;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return 0; // Default age if parsing fails
     }
 
     private void setupScrollListener() {
@@ -139,11 +207,12 @@ public class StarFragment extends Fragment implements PaymentResultListener {
 
     @Override
     public void onPaymentSuccess(String s) {
-        Log.d("TAG", "onPaymentSuccess: " + s);
+        Log.d("TAG", "onPaymentSuccess:" + s);
     }
 
     @Override
     public void onPaymentError(int i, String s) {
-        Log.d("TAG", "onPaymentError: ");
+        Log.d("TAG", "onPaymentError:");
     }
+
 }
