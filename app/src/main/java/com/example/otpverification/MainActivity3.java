@@ -165,7 +165,7 @@ public class MainActivity3 extends AppCompatActivity {
 
     // Method to move to the next activity
     private void moveToNextActivity() {
-        Intent intent = new Intent(MainActivity3.this, S2.class);
+        Intent intent = new Intent(MainActivity3.this, MainActivity4.class);
         startActivity(intent);
     }
 
