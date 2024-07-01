@@ -37,46 +37,66 @@ public class LoveAnime extends AppCompatActivity {
 
         String number = user.getPhoneNumber().replace("+91", "");
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                db.collection("users").document(number).get()
-                        .addOnCompleteListener(task -> {
-                            if (task.isSuccessful()) {
-                                DocumentSnapshot document = task.getResult();
-                                if (document.exists()) {
+        if(user != null){
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    db.collection("users").document(number).get()
+                            .addOnCompleteListener(task -> {
+                                if (task.isSuccessful()) {
+                                    DocumentSnapshot document = task.getResult();
+                                    if (document.exists()) {
 
 
-                                    String name = document.getString("firstName");
-                                    String dob = document.getString("dob");
+                                        String name = document.getString("firstName");
+                                        String dob = document.getString("dob");
 
-                                    if (name != null && !name.isEmpty() && dob != null && !dob.isEmpty()) {
-                                        // User exists and has required data, navigate to dashboard
-                                        Intent intent = new Intent(LoveAnime.this, MainActivity.class);
-                                        startActivity(intent);
-                                        finish();
+                                        if (name != null && !name.isEmpty() && dob != null && !dob.isEmpty()) {
+                                            // User exists and has required data, navigate to dashboard
+                                            Intent intent = new Intent(LoveAnime.this, MainActivity.class);
+                                            startActivity(intent);
+                                            finish();
+                                        } else {
+                                            // User exists but does not have required data, navigate to registration
+                                            Intent intent = new Intent(LoveAnime.this, MainActivity2.class);
+                                            intent.putExtra("mobile", getIntent().getStringExtra("mobile"));
+                                            startActivity(intent);
+                                            finish();
+                                        }
                                     } else {
-                                        // User exists but does not have required data, navigate to registration
-                                        Intent intent = new Intent(LoveAnime.this, MainActivity2.class);
+                                        // User does not exist, create a new user entry
+
+                                        Intent intent = new Intent(getApplicationContext(), AS.class);
                                         intent.putExtra("mobile", getIntent().getStringExtra("mobile"));
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                         startActivity(intent);
                                         finish();
                                     }
                                 } else {
-                                    // User does not exist, create a new user entry
-
-                                    Intent intent = new Intent(getApplicationContext(), AS.class);
-                                    intent.putExtra("mobile", getIntent().getStringExtra("mobile"));
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    startActivity(intent);
-                                    finish();
+                                    Toast.makeText(LoveAnime.this, "Error checking user", Toast.LENGTH_SHORT).show();
                                 }
-                            } else {
-                                Toast.makeText(LoveAnime.this, "Error checking user", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-            }
-        }, 3000);
+                            });
+                }
+            }, 3000);
+
+        }
+        else{
+
+            new Handler().postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+
+                    Intent intent = new Intent(getApplicationContext(), AS.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+
+                }
+            }, 3000);
+
+        }
 
     }
 }

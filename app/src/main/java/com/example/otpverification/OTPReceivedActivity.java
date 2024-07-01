@@ -120,13 +120,13 @@ public class OTPReceivedActivity extends AppCompatActivity {
                         DocumentSnapshot document = task.getResult();
                         if (document.exists()) {
 
-
                             String name = document.getString("firstName");
                             String dob = document.getString("dob");
 
                             if (name != null && !name.isEmpty() && dob != null && !dob.isEmpty()) {
                                 // User exists and has required data, navigate to dashboard
                                 Intent intent = new Intent(OTPReceivedActivity.this, MainActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
                                 finish();
                             } else {
