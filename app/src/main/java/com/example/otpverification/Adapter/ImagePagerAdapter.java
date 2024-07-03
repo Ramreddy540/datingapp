@@ -98,7 +98,8 @@ import androidx.viewpager.widget.PagerAdapter;
 
                         String likedUserName = viewPagerItems.get(position).getFirstName();
                         String likedUserImage = likedItem.getImageUrl();
-                        String likedUserPhone = viewPagerItems.get(position).getDob();
+                        String likedUserPhone = viewPagerItems.get(position).getPhone_Num();
+
                         onImageClickListener.onImageClick(likedUserName,likedUserImage,likedUserPhone);
                     }
                 }

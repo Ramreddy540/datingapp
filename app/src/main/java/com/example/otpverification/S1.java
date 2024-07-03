@@ -53,6 +53,9 @@ public class S1 extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         calendar = Calendar.getInstance();
 
+        String numb = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber();
+        Number = numb.replace("+91", "");
+
         editTextFirstName = findViewById(R.id.name);
         editTextLastName = findViewById(R.id.lastName);
         editTextEmail = findViewById(R.id.email);
@@ -67,6 +70,7 @@ public class S1 extends AppCompatActivity {
         editTextDOB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 showDatePickerDialog();
             }
         });
@@ -154,9 +158,7 @@ public class S1 extends AppCompatActivity {
         user.put("email", email);
         user.put("dob", dob);
         user.put("gender", gender);
-
-        String numb = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber();
-        Number = numb.replace("+91", "");
+        user.put("phoneNum", Number);
 
         // Add data to Firestore
         db.collection("users").document(Number)

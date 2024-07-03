@@ -35,9 +35,9 @@ public class LoveAnime extends AppCompatActivity {
 
         db= FirebaseFirestore.getInstance();
 
-        String number = user.getPhoneNumber().replace("+91", "");
-
         if(user != null){
+
+            String number = user.getPhoneNumber().replace("+91", "");
 
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -47,7 +47,6 @@ public class LoveAnime extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     DocumentSnapshot document = task.getResult();
                                     if (document.exists()) {
-
 
                                         String name = document.getString("firstName");
                                         String dob = document.getString("dob");

@@ -11,6 +11,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -53,32 +55,40 @@ public class HeartFragment extends Fragment {
         fetchAllLikes();
 
         recyclerView = view.findViewById(R.id.your_like_recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
         yourLikeAdapter = new YourLikeAdapter(getContext(), itemList);
         recyclerView.setAdapter(yourLikeAdapter);
     }
 
     private void fetchAllLikes() {
 
-        // Fetch the user details from the 'users' collection
-        db.collection("likes").document(number).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot userDocument = task.getResult();
-                    if (userDocument.exists()) {
-                        String name = userDocument.getString("likedName");
-                        String image = userDocument.getString("likedImage");
-                        itemList.add(new YourLikeItem(image, name));
+        db.collection("likes")
+                .document(number)
+                .collection("liked_by_you")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
 
+                                    String name = document.getString("likedName");
+                                    String image = document.getString("likedImage");
+                                    itemList.add(new YourLikeItem(image, name));
+
+                            }
+
+                            yourLikeAdapter.notifyDataSetChanged();
+
+                        } else {
+                            Log.d("Firestore", "Error getting liked users: ", task.getException());
+                        }
                     }
+                });
 
-                    yourLikeAdapter.notifyDataSetChanged();
 
-                } else {
-                    Log.d("Firestore", "Error fetching user details: ", task.getException());
-                }
-            }
-        });
     }
 }

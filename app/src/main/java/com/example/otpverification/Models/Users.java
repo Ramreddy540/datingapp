@@ -3,11 +3,11 @@ package com.example.otpverification.Models;
 public class Users {
 
     String  firstName, dob, Height, Religion, Status, Language, Smoke, Community, Drinking,
-            imageUrl;
+            imageUrl, phoneNum;
 
     public Users(String firstName, String dob, String height, String religion, String status,
-                 String language, String smoke, String community, String drinking, String imageUrl)
-    {
+                 String language, String smoke, String community, String drinking, String imageUrl,
+                 String phone_Num) {
         this.firstName = firstName;
         this.dob = dob;
         Height = height;
@@ -18,6 +18,7 @@ public class Users {
         Community = community;
         Drinking = drinking;
         this.imageUrl = imageUrl;
+        this.phoneNum = phone_Num;
     }
 
     public String getFirstName() {
@@ -94,6 +95,14 @@ public class Users {
 
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    public void setPhone_Num(String phone_Num) {
+        this.phoneNum = phone_Num;
+    }
+
+    public String getPhone_Num() {
+        return phoneNum;
     }
 
     public void setImageUrl(String imageUrl) {

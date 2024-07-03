@@ -1,7 +1,6 @@
 package com.example.otpverification;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,11 +19,9 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 import com.razorpay.PaymentResultListener;
@@ -117,12 +114,13 @@ public class StarFragment extends Fragment implements PaymentResultListener, OnI
                                     String community = document.getString("Community");
                                     String drinking = document.getString("Drinking");
                                     String imageResId = document.getString("image1");
+                                    String phone_Num = document.getString("phoneNum");
 
                                     // Calculate age from DOB
                                     int age = calculateAge(dob);
 
                                     viewPagerItems.add(new Users(firstName, String.valueOf(age), height, religion,
-                                            status, language, smoke, community, drinking, imageResId));
+                                            status, language, smoke, community, drinking, imageResId, phone_Num));
 
                                 }
 
@@ -199,36 +197,6 @@ public class StarFragment extends Fragment implements PaymentResultListener, OnI
         verticalScrollCount = 0;
     }
 
-    private void fetchData() {
-        db.collection("users")
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            String height = document.getString("height");
-                            String religion = document.getString("religion");
-                            String community = document.getString("community");
-                            String smoke = document.getString("smoke");
-                            String status = document.getString("status");
-                            String drinking = document.getString("drinking");
-                            String language = document.getString("language");
-                            List<String> imageUrls = (List<String>) document.get("imageUrls");
-
-                            // Ensure imageUrls is not null
-                            if (imageUrls == null) {
-                                imageUrls = new ArrayList<>();
-                            }
-
-                            User user = new User(height, religion, community, smoke, status, drinking, language, imageUrls);
-                            userList.add(user);
-                        }
-                        userAdapter.notifyDataSetChanged();
-                    } else {
-                        Toast.makeText(getContext(), "Error getting documents.", Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
-
     @Override
     public void onPaymentSuccess(String s) {
         Log.d("TAG", "onPaymentSuccess:" + s);
@@ -242,26 +210,26 @@ public class StarFragment extends Fragment implements PaymentResultListener, OnI
     @Override
     public void onImageClick(String likedUserName, String likedUserImage, String likedUserPhone) {
 
-        storeLike(CurrentUserNumber, likedUserName, likedUserImage);
+        storeLike(CurrentUserNumber, likedUserName, likedUserImage, likedUserPhone);
 
     }
 
-    private void storeLike(String likerId, String likedId, String likedUserImage) {
+    private void storeLike(String likerId, String likedName, String likedUserImage, String likedUserPhone) {
 
         Map<String, Object> likeData = new HashMap<>();
-        likeData.put("likedName", likedId);
+        likeData.put("likedName",  likedName);
         likeData.put("likedImage", likedUserImage);
-        likeData.put("timestamp", FieldValue.serverTimestamp());
+        likeData.put("timestamp",  FieldValue.serverTimestamp());
 
         db.collection("likes")
-                .document(CurrentUserNumber)
-                .set(likeData, SetOptions.merge())
+                .document(likerId)
+                .collection("liked_by_you")
+                .document(likedUserPhone)
+                .set(likeData)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-
-                    Toast.makeText(getContext(), "Profile Liked", Toast.LENGTH_SHORT).show();
-
+                        Toast.makeText(getContext(), "Profile Liked", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

@@ -10,7 +10,12 @@
 # class:
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
-#}
+#
+
+# Keep the proguard.annotation package
+# Keep rules from the missing_rules.txt file (example)
+# Add other rules as necessary
+
 
 # Uncomment this to preserve the line number information for
 # debugging stack traces.
