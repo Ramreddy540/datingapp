@@ -1,5 +1,3 @@
-
-
 package com.example.otpverification;
 
 import android.os.Bundle;
@@ -53,17 +51,15 @@ public class MessageFragment extends Fragment implements MemberAdapter.OnItemCli
         memberList.add(new Member("Jane Smith", R.drawable.kp, "Let's catch up later.", "1:15 PM", 1));
         memberList.add(new Member("John Doe", R.drawable.jack, "Hey, how are you?", "12:45 PM", 2));
         memberList.add(new Member("Jane Smith", R.drawable.kp, "Let's catch up later.", "1:15 PM", 1));
-        memberList.add(new Member("John Doe", R.drawable.jack, "Hey, how are you?", "12:45 PM", 2));
-        memberList.add(new Member("Jane Smith", R.drawable.kp, "Let's catch up later.", "1:15 PM", 1));
-        memberList.add(new Member("John Doe", R.drawable.jack, "Hey, how are you?", "12:45 PM", 2));
-        memberList.add(new Member("M S Dhoni", R.drawable.kp, "Let's catch up later.", "1:15 PM", 1));
-        memberList.add(new Member("John Doe", R.drawable.jack, "Hey, how are you?", "12:45 PM", 2));
+        memberList.add(new Member("Virat", R.drawable.jack, "Hey, how are you?", "12:45 PM", 2));
         memberList.add(new Member("Jane Smith", R.drawable.kp, "Let's catch up later.", "1:15 PM", 1));
         memberList.add(new Member("John Doe", R.drawable.jack, "Hey, how are you?", "12:45 PM", 2));
         memberList.add(new Member("Jane Smith", R.drawable.kp, "Let's catch up later.", "1:15 PM", 1));
         memberList.add(new Member("John Doe", R.drawable.jack, "Hey, how are you?", "12:45 PM", 2));
         memberList.add(new Member("Jane Smith", R.drawable.kp, "Let's catch up later.", "1:15 PM", 1));
-
+        memberList.add(new Member("John Cena", R.drawable.jack, "Hey, how are you?", "12:45 PM", 2));
+        memberList.add(new Member("Jane Smith", R.drawable.kp, "Let's catch up later.", "1:15 PM", 1));
+        memberList.add(new Member("John Doe", R.drawable.jack, "Hey, how are you?", "12:45 PM", 2));
 
         // Set up RecyclerView
         memberAdapter = new MemberAdapter(memberList, this);
@@ -102,4 +98,3 @@ public class MessageFragment extends Fragment implements MemberAdapter.OnItemCli
                 .commit();
     }
 }
-

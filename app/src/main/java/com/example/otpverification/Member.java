@@ -1,4 +1,3 @@
-
 package com.example.otpverification;
 
 public class Member {
@@ -6,14 +5,14 @@ public class Member {
     private int photo;
     private String lastMessage;
     private String time;
-    private int messageCount;
+    private int unreadMessages;
 
-    public Member(String name, int photo, String lastMessage, String time, int messageCount) {
+    public Member(String name, int photo, String lastMessage, String time, int unreadMessages) {
         this.name = name;
         this.photo = photo;
         this.lastMessage = lastMessage;
         this.time = time;
-        this.messageCount = messageCount;
+        this.unreadMessages = unreadMessages;
     }
 
     public String getName() {
@@ -32,9 +31,7 @@ public class Member {
         return time;
     }
 
-    public int getMessageCount() {
-        return messageCount;
+    public int getUnreadMessages() {
+        return unreadMessages;
     }
 }
-
-
